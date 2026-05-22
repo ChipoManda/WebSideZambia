@@ -271,7 +271,7 @@ function buildDash(c, email) {
           <li>Read aloud on any paper</li>
           <li>All country collections included</li>
         </ul>
-        <button class="sub-btn" onclick="alert('Payment coming soon: MTN Mobile Money, Airtel Money, Visa and Mastercard.')">Subscribe now</button>
+        <button class="sub-btn" onclick="payWithMoneyUnify()">Subscribe now</button>
         <p class="pay-note">MTN Mobile Money, Airtel Money, Visa, Mastercard</p>
       </div>`;
   } else if (c) {
@@ -349,6 +349,104 @@ function ttsStop()   {
   document.getElementById('tts-btn').classList.remove('tts-on');
 }
 function ttsRate(v) { rate=parseFloat(v); document.getElementById('tts-rv').textContent=rate.toFixed(1)+'x'; if(synth.speaking&&!synth.paused) ttsSpeak(ci); }
+</script>
+<!-- MoneyUnify payment — MTN, Airtel, Zamtel -->
+<script>
+function payWithMoneyUnify() {
+  const email = document.getElementById('f-email').value.trim()
+              || localStorage.getItem('ga_email') || '';
+  const phone = document.getElementById('f-phone').value.trim()
+              || localStorage.getItem('ga_phone') || '';
+
+  if (!phone) {
+    alert('Please enter your phone number before subscribing.');
+    showPage('landing');
+    return;
+  }
+
+  const cleanPhone = phone.replace(/\s/g,'').replace('+','');
+  const btn = document.querySelector('.sub-btn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending payment request...'; }
+
+  fetch('https://api.moneyunify.one/payments/request', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Accept': 'application/json'
+    },
+    body: new URLSearchParams({
+      from_payer: cleanPhone,
+      amount:     '24.12',
+      auth_id:    '01KS7ZB93G7GPYKTAVXYPWRMF9'
+      /* Replace 01KS7ZB93G7GPYKTAVXYPWRMF9 with your real auth_id
+         from moneyunify.one/businesses after creating your account */
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (!data.isError && data.data && data.data.transaction_id) {
+      const txId = data.data.transaction_id;
+      localStorage.setItem('ga_email', email);
+      localStorage.setItem('ga_phone', cleanPhone);
+      if (btn) { btn.textContent = 'Check your phone...'; }
+      showPaymentPrompt(txId, cleanPhone, email);
+    } else {
+      if (btn) { btn.disabled = false; btn.textContent = 'Subscribe now'; }
+      alert('Could not initiate payment. Please check your number and try again.');
+    }
+  })
+  .catch(() => {
+    if (btn) { btn.disabled = false; btn.textContent = 'Subscribe now'; }
+    alert('Network error. Please check your connection and try again.');
+  });
+}
+
+function showPaymentPrompt(txId, phone, email) {
+  document.getElementById('pricing-section').innerHTML = `
+    <div class="section-label">Complete your payment</div>
+    <div class="pricing-card" style="text-align:center">
+      <div style="font-size:32px;margin-bottom:12px">&#128242;</div>
+      <h3 style="font-family:'Lora',Georgia,serif;font-size:17px;font-weight:700;color:var(--deep);margin-bottom:10px">Check your phone</h3>
+      <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px">
+        A payment prompt of <strong style="color:var(--deep)">K24.12</strong> has been sent to
+        <strong style="color:var(--deep)">${phone}</strong>.<br/>
+        Enter your Mobile Money PIN to confirm.
+      </p>
+      <button class="sub-btn" onclick="verifyMoneyUnify('${txId}','${email}',this)">I have paid, verify now</button>
+      <p class="pay-note" style="margin-top:10px">MTN, Airtel and Zamtel supported</p>
+    </div>`;
+}
+
+function verifyMoneyUnify(txId, email, btn) {
+  if (btn) { btn.disabled = true; btn.textContent = 'Verifying...'; }
+
+  fetch('https://api.moneyunify.one/payments/verify', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Accept': 'application/json'
+    },
+    body: new URLSearchParams({
+      transaction_id: txId,
+      auth_id:        '01KS7ZB93G7GPYKTAVXYPWRMF9'
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (!data.isError && data.data && data.data.status === 'successful') {
+      localStorage.setItem('ga_subscribed', 'true');
+      localStorage.setItem('ga_email', email);
+      window.location.href = 'library.html';
+    } else {
+      if (btn) { btn.disabled = false; btn.textContent = 'I have paid, verify now'; }
+      alert('Payment not confirmed yet. Please enter your PIN on your phone first, then try again.');
+    }
+  })
+  .catch(() => {
+    if (btn) { btn.disabled = false; btn.textContent = 'I have paid, verify now'; }
+    alert('Network error during verification. Please try again.');
+  });
+}
 </script>
 </body>
 </html>
