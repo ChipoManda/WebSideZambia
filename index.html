@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GiftedAcadem</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --deep:    #2C2C2A;
+    --mid:     #444441;
+    --mid2:    #5F5E5A;
+    --muted:   #888780;
+    --warm:    #B4B2A9;
+    --surface: #D3D1C7;
+    --near:    #F1EFE8;
+    --white:   #ffffff;
+    --border:  rgba(44,44,42,0.12);
+    --radius:  10px;
+    --radius-sm: 6px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--near); color: var(--mid); font-size: 15px; line-height: 1.6; min-height: 100vh; }
+
+  /* WORDMARK */
+  .wordmark { font-family: Georgia, 'Times New Roman', serif; font-size: 26px; letter-spacing: -0.5px; line-height: 1; text-decoration: none; }
+  .wordmark .g { font-weight: 700; font-style: italic; color: var(--deep); }
+  .wordmark .a { font-weight: 400; font-style: normal; color: var(--mid); }
+
+  /* NAV */
+  nav { height: 54px; padding: 0 6%; display: flex; align-items: center; justify-content: space-between; background: var(--white); border-bottom: 0.5px solid var(--border); position: sticky; top: 0; z-index: 100; }
+  .nav-reg { font-size: 13px; padding: 7px 18px; border-radius: var(--radius-sm); background: var(--deep); color: var(--white); border: none; cursor: pointer; font-weight: 500; font-family: inherit; }
+  .nav-reg:hover { background: var(--mid); }
+
+  /* PAGES */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* LANDING */
+  .landing { min-height: calc(100vh - 54px); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 6%; text-align: center; }
+
+  .landing-wordmark { font-family: Georgia, 'Times New Roman', serif; font-size: 52px; letter-spacing: -1px; line-height: 1; margin-bottom: 20px; }
+  .landing-wordmark .g { font-weight: 700; font-style: italic; color: var(--deep); }
+  .landing-wordmark .a { font-weight: 400; font-style: normal; color: var(--mid); }
+
+  .tagline { font-family: 'Lora', Georgia, serif; font-size: 17px; color: var(--mid2); max-width: 420px; margin-bottom: 10px; font-weight: 400; line-height: 1.65; }
+  .sub-tagline { font-size: 13px; color: var(--muted); max-width: 380px; margin-bottom: 44px; }
+
+  /* FORM CARD */
+  .reg-card { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 28px 32px; width: 100%; max-width: 380px; text-align: left; }
+
+  .detect-banner { display: none; background: var(--near); border: 0.5px solid var(--warm); border-radius: var(--radius-sm); padding: 10px 14px; margin-bottom: 18px; font-size: 13px; color: var(--mid2); line-height: 1.55; }
+  .detect-banner.show { display: block; }
+
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 11px; font-weight: 500; color: var(--muted); margin-bottom: 6px; letter-spacing: 0.3px; text-transform: uppercase; }
+  .field input { width: 100%; padding: 10px 12px; border-radius: var(--radius-sm); border: 0.5px solid var(--warm); background: var(--near); font-size: 14px; color: var(--deep); font-family: inherit; outline: none; }
+  .field input:focus { border-color: var(--mid2); box-shadow: 0 0 0 3px rgba(95,94,90,0.1); background: var(--white); }
+  .field .hint { font-size: 11px; color: var(--muted); margin-top: 5px; }
+
+  .reg-btn { width: 100%; padding: 12px; border-radius: var(--radius-sm); background: var(--deep); color: var(--white); font-size: 14px; font-weight: 600; border: none; cursor: pointer; font-family: inherit; margin-top: 4px; letter-spacing: 0.1px; }
+  .reg-btn:hover { background: var(--mid); }
+  .reg-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+  /* DASHBOARD */
+  .dash { max-width: 600px; margin: 0 auto; padding: 44px 6% 80px; }
+
+  .welcome-block { margin-bottom: 40px; border-bottom: 0.5px solid var(--border); padding-bottom: 28px; }
+  .welcome-flag { font-size: 32px; margin-bottom: 12px; }
+  .welcome-block h2 { font-family: 'Lora', Georgia, serif; font-size: 22px; font-weight: 700; color: var(--deep); margin-bottom: 5px; line-height: 1.25; }
+  .welcome-block p { font-size: 13px; color: var(--muted); }
+
+  .dash-section { margin-bottom: 32px; }
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+
+  /* collection card */
+  .collection-card { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .collection-card.live { background: var(--near); border-color: var(--warm); }
+  .col-info h3 { font-size: 14px; font-weight: 600; color: var(--deep); margin-bottom: 3px; }
+  .col-info p { font-size: 12px; color: var(--muted); }
+  .live-pill { font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--surface); color: var(--mid2); letter-spacing: 0.3px; text-transform: uppercase; white-space: nowrap; }
+  .soon-pill { font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--near); color: var(--muted); letter-spacing: 0.3px; text-transform: uppercase; white-space: nowrap; }
+
+  /* pricing */
+  .pricing-card { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 24px 28px; }
+  .price-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px; }
+  .price-big { font-family: 'Lora', Georgia, serif; font-size: 34px; font-weight: 700; color: var(--deep); letter-spacing: -0.5px; }
+  .price-per { font-size: 13px; color: var(--muted); }
+  .price-note { font-size: 12px; color: var(--muted); margin-bottom: 20px; }
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 22px; }
+  .feature-list li { font-size: 13px; color: var(--mid2); display: flex; gap: 10px; align-items: flex-start; }
+  .feature-list li::before { content: 'v'; font-family: Georgia, serif; font-weight: 700; color: var(--mid2); font-size: 11px; margin-top: 2px; flex-shrink: 0; }
+  .sub-btn { width: 100%; padding: 12px; border-radius: var(--radius-sm); background: var(--deep); color: var(--white); font-size: 14px; font-weight: 600; border: none; cursor: pointer; font-family: inherit; }
+  .sub-btn:hover { background: var(--mid); }
+  .pay-note { font-size: 11px; color: var(--muted); text-align: center; margin-top: 9px; }
+
+  /* waitlist */
+  .waitlist-card { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 24px 28px; }
+  .waitlist-card h3 { font-family: 'Lora', Georgia, serif; font-size: 16px; font-weight: 600; color: var(--deep); margin-bottom: 8px; }
+  .waitlist-card p { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+  .waitlist-card a { font-size: 13px; color: var(--mid2); font-weight: 500; text-decoration: underline; cursor: pointer; }
+
+  /* TOOLS */
+  #ga-toolbar { position: fixed; bottom: 20px; right: 20px; z-index: 200; display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+  .ga-btn { padding: 8px 15px; border-radius: 20px; font-size: 12px; font-weight: 500; border: 0.5px solid var(--warm); cursor: pointer; background: var(--white); color: var(--mid2); font-family: inherit; white-space: nowrap; }
+  .ga-btn:hover { background: var(--near); }
+  .ga-btn.tts-on { background: var(--deep); color: var(--white); border-color: var(--deep); }
+
+  #tts-panel { display: none; position: fixed; bottom: 72px; right: 20px; z-index: 199; width: 272px; background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 14px; }
+  #tts-panel.show { display: block; }
+  #tts-panel h4 { font-size: 12px; font-weight: 600; color: var(--deep); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+  #tts-now { font-size: 12px; color: var(--muted); background: var(--near); padding: 7px 9px; border-radius: var(--radius-sm); min-height: 34px; margin-bottom: 8px; line-height: 1.5; }
+  .tts-row { display: flex; gap: 4px; flex-wrap: wrap; }
+  .tts-btn { flex: 1; min-width: 48px; padding: 6px 6px; font-size: 11px; border-radius: var(--radius-sm); border: 0.5px solid var(--warm); background: transparent; cursor: pointer; color: var(--mid2); font-family: inherit; }
+  .tts-btn:hover { background: var(--near); }
+  .tts-btn.danger { border-color: var(--warm); color: var(--muted); }
+  #tts-speed { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 11px; color: var(--muted); }
+  #tts-speed input { flex: 1; }
+
+  @media print {
+    #ga-toolbar, #tts-panel, nav { display: none !important; }
+    .page { display: block !important; }
+    body { font-size: 11pt; background: #fff; }
+    @page { margin: 18mm 16mm; }
+  }
+  @media (max-width: 480px) {
+    .reg-card { padding: 20px; }
+    .landing-wordmark { font-size: 38px; }
+    .dash { padding: 28px 5% 60px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="wordmark" href="#">
+    <span class="g">Gifted</span><span class="a">Academ</span>
+  </a>
+  <button class="nav-reg" onclick="showPage('landing')">Register</button>
+</nav>
+
+<!-- LANDING -->
+<div class="page active" id="page-landing">
+  <div class="landing">
+    <div class="landing-wordmark"><span class="g">Gifted</span><span class="a">Academ</span></div>
+    <p class="tagline">Past papers for Biomedical Science students across Africa.</p>
+    <p class="sub-tagline">Organised by course and university.</p>
+
+    <div class="reg-card">
+      <div class="detect-banner" id="detect-banner"></div>
+
+      <div class="field">
+        <label>Phone number</label>
+        <input type="tel" id="f-phone" placeholder="+260 97 123 4567"
+               oninput="onPhone(this.value)" autocomplete="tel"/>
+        <div class="hint">Include your country code, e.g. +260 for Zambia</div>
+      </div>
+
+      <div class="field">
+        <label>Email address</label>
+        <input type="email" id="f-email" placeholder="you@email.com" autocomplete="email"/>
+      </div>
+
+      <button class="reg-btn" id="reg-btn" onclick="doRegister()">Create account</button>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="page" id="page-dash">
+  <div class="dash">
+
+    <div class="welcome-block">
+      <div class="welcome-flag" id="dash-flag">&#127979;</div>
+      <h2 id="dash-title">Welcome to GiftedAcadem</h2>
+      <p id="dash-sub">Your account is ready.</p>
+    </div>
+
+    <div class="dash-section">
+      <div class="section-label">Your collection</div>
+      <div class="collection-card" id="col-card">
+        <div class="col-info">
+          <h3 id="col-name">Loading</h3>
+          <p id="col-desc"></p>
+        </div>
+        <div id="col-badge"></div>
+      </div>
+    </div>
+
+    <div class="dash-section" id="pricing-section"></div>
+
+  </div>
+</div>
+
+<!-- TOOLS -->
+<div id="ga-toolbar">
+  <button class="ga-btn" onclick="window.print()">Print</button>
+  <button class="ga-btn" id="tts-btn" onclick="toggleTTS()">Read aloud</button>
+</div>
+<div id="tts-panel">
+  <h4>Read aloud</h4>
+  <div id="tts-now">Press Play to begin.</div>
+  <div class="tts-row">
+    <button class="tts-btn" id="tb-play"   onclick="ttsPlay()">Play</button>
+    <button class="tts-btn" id="tb-pause"  onclick="ttsPause()"  style="display:none">Pause</button>
+    <button class="tts-btn" id="tb-resume" onclick="ttsResume()" style="display:none">Resume</button>
+    <button class="tts-btn" onclick="ttsPrev()">Prev</button>
+    <button class="tts-btn" onclick="ttsNext()">Next</button>
+    <button class="tts-btn danger" onclick="ttsStop()">Stop</button>
+  </div>
+  <div id="tts-speed">
+    <span>Speed</span>
+    <input type="range" min="0.5" max="2" step="0.1" value="1" oninput="ttsRate(this.value)" id="tts-r">
+    <span id="tts-rv">1.0x</span>
+  </div>
+</div>
+
+<script>
+const countries = [
+  { prefix:'+260', flag:'&#127487;&#127474;', name:'Zambia',       live:true,  unis:'UNZA, CBU, Mulungushi' },
+  { prefix:'+27',  flag:'&#127487;&#127462;', name:'South Africa', live:true,  unis:'UCT, Wits, UWC' },
+  { prefix:'+254', flag:'&#127472;&#127466;', name:'Kenya',        live:true,  unis:'University of Nairobi' },
+  { prefix:'+234', flag:'&#127475;&#127468;', name:'Nigeria',      live:false, unis:'UNILAG, UI, ABU' },
+  { prefix:'+233', flag:'&#127468;&#127469;', name:'Ghana',        live:false, unis:'University of Ghana, KNUST' },
+  { prefix:'+256', flag:'&#127482;&#127468;', name:'Uganda',       live:false, unis:'Makerere University' },
+  { prefix:'+255', flag:'&#127481;&#127487;', name:'Tanzania',     live:false, unis:'UDSM' },
+  { prefix:'+265', flag:'&#127474;&#127484;', name:'Malawi',       live:false, unis:'University of Malawi' },
+  { prefix:'+263', flag:'&#127487;&#127484;', name:'Zimbabwe',     live:false, unis:'University of Zimbabwe' },
+  { prefix:'+250', flag:'&#127479;&#127484;', name:'Rwanda',       live:false, unis:'University of Rwanda' },
+  { prefix:'+251', flag:'&#127466;&#127481;', name:'Ethiopia',     live:false, unis:'AAU' },
+].sort((a,b) => b.prefix.length - a.prefix.length);
+
+let detected = null;
+
+function detect(phone) {
+  const p = phone.replace(/\s/g,'');
+  return countries.find(c => p.startsWith(c.prefix)) || null;
+}
+
+function onPhone(val) {
+  const banner = document.getElementById('detect-banner');
+  detected = detect(val);
+  if (!detected) { banner.classList.remove('show'); return; }
+  const c = detected;
+  banner.innerHTML = c.live
+    ? '<strong>' + c.name + ' detected.</strong> Your collection is live: ' + c.unis + '.'
+    : '<strong>' + c.name + ' detected.</strong> We are collating papers for ' + c.name + '. You will be notified when ready.';
+  banner.classList.add('show');
+}
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+}
+
+function doRegister() {
+  const phone = document.getElementById('f-phone').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  if (!phone || !email) { alert('Please enter your phone number and email.'); return; }
+  if (!phone.startsWith('+')) { alert('Please include your country code, e.g. +260 97 123 4567'); return; }
+  if (!email.includes('@')) { alert('Please enter a valid email address.'); return; }
+  const btn = document.getElementById('reg-btn');
+  btn.disabled = true; btn.textContent = 'Creating account...';
+  setTimeout(() => {
+    buildDash(detected, email);
+    showPage('dash');
+    btn.disabled = false; btn.textContent = 'Create account';
+  }, 700);
+}
+
+function buildDash(c, email) {
+  const colCard = document.getElementById('col-card');
+  if (c && c.live) {
+    document.getElementById('dash-flag').innerHTML  = c.flag;
+    document.getElementById('dash-title').textContent = 'Welcome to the ' + c.name + ' collection';
+    document.getElementById('dash-sub').textContent   = 'Registered with ' + email;
+    colCard.classList.add('live');
+    document.getElementById('col-name').textContent = c.name + ' collection';
+    document.getElementById('col-desc').textContent = c.unis;
+    document.getElementById('col-badge').innerHTML  = '<span class="live-pill">Live</span>';
+    document.getElementById('pricing-section').innerHTML = `
+      <div class="section-label">Subscribe to unlock</div>
+      <div class="pricing-card">
+        <div class="price-row">
+          <span class="price-big">K24.12</span>
+          <span class="price-per">per month</span>
+        </div>
+        <p class="price-note">Full access to all papers and the AI tutor. Cancel anytime.</p>
+        <ul class="feature-list">
+          <li>All past papers, full PDFs</li>
+          <li>Filter by subject, school, and year</li>
+          <li>AI tutor on every question</li>
+          <li>Read aloud on any paper</li>
+          <li>All country collections included</li>
+        </ul>
+        <button class="sub-btn" onclick="alert('Payment coming soon: MTN Mobile Money, Airtel Money, Visa and Mastercard.')">Subscribe now</button>
+        <p class="pay-note">MTN Mobile Money, Airtel Money, Visa, Mastercard</p>
+      </div>`;
+  } else if (c) {
+    document.getElementById('dash-flag').innerHTML  = c.flag;
+    document.getElementById('dash-title').textContent = c.name + ' collection coming soon';
+    document.getElementById('dash-sub').textContent   = 'Registered with ' + email;
+    document.getElementById('col-name').textContent = c.name;
+    document.getElementById('col-desc').textContent = 'Collating from ' + c.unis;
+    document.getElementById('col-badge').innerHTML  = '<span class="soon-pill">Coming soon</span>';
+    document.getElementById('pricing-section').innerHTML = `
+      <div class="section-label">While you wait</div>
+      <div class="waitlist-card">
+        <h3>You are on the list</h3>
+        <p>We will send one email to ${email} when your collection goes live. The Zambia collection is open now.</p>
+        <a onclick="alert('Library coming soon.')">Browse Zambia papers</a>
+      </div>`;
+  } else {
+    document.getElementById('dash-title').textContent = 'You are registered';
+    document.getElementById('dash-sub').textContent   = email;
+    document.getElementById('col-name').textContent = 'Your collection';
+    document.getElementById('col-desc').textContent = 'We will match your region when it goes live';
+    document.getElementById('col-badge').innerHTML  = '<span class="soon-pill">Coming soon</span>';
+    document.getElementById('pricing-section').innerHTML = `
+      <div class="section-label">While you wait</div>
+      <div class="waitlist-card">
+        <h3>You are on the list</h3>
+        <p>We will notify you at ${email} when a collection for your region is ready. The Zambia collection is open now.</p>
+        <a onclick="alert('Library coming soon.')">Browse Zambia papers</a>
+      </div>`;
+  }
+}
+
+/* TTS */
+const synth = window.speechSynthesis;
+let chunks=[], ci=0, rate=1.0, paused=false;
+const hlStyle = document.createElement('style');
+hlStyle.textContent = '.tts-hl { outline: 1.5px solid #5F5E5A !important; outline-offset: 3px; border-radius: 3px; background: rgba(95,94,90,0.07) !important; }';
+document.head.appendChild(hlStyle);
+
+function buildChunks() {
+  chunks = [];
+  ['.tagline','.sub-tagline','h2','h3','.col-info p','.price-big','.price-note','.feature-list li','.waitlist-card p'].forEach(s =>
+    document.querySelectorAll(s).forEach(el => {
+      const t = el.innerText.trim().replace(/\s+/g,' ');
+      if (t.length > 2) chunks.push({text:t, el});
+    })
+  );
+}
+function toggleTTS() {
+  const p = document.getElementById('tts-panel');
+  p.classList.toggle('show');
+  if (p.classList.contains('show') && !chunks.length) buildChunks();
+}
+function ttsSpeak(i) {
+  if (i < 0 || i >= chunks.length) { ttsStop(); return; }
+  ci = i; synth.cancel();
+  document.querySelectorAll('.tts-hl').forEach(e => e.classList.remove('tts-hl'));
+  const c = chunks[i];
+  c.el.classList.add('tts-hl');
+  c.el.scrollIntoView({behavior:'smooth', block:'center'});
+  document.getElementById('tts-now').textContent = '(' + (i+1) + ' of ' + chunks.length + ') ' + c.text;
+  const u = new SpeechSynthesisUtterance(c.text);
+  u.rate = rate; u.lang = 'en-ZA';
+  u.onend = () => { if (!paused) ttsSpeak(ci+1); };
+  synth.speak(u);
+  document.getElementById('tb-play').style.display   = 'none';
+  document.getElementById('tb-pause').style.display  = '';
+  document.getElementById('tb-resume').style.display = 'none';
+  document.getElementById('tts-btn').classList.add('tts-on');
+}
+function ttsPlay()   { buildChunks(); paused=false; ttsSpeak(0); }
+function ttsPause()  { paused=true; synth.pause(); document.getElementById('tb-pause').style.display='none'; document.getElementById('tb-resume').style.display=''; }
+function ttsResume() { paused=false; synth.resume(); document.getElementById('tb-pause').style.display=''; document.getElementById('tb-resume').style.display='none'; }
+function ttsNext()   { paused=false; ttsSpeak(ci+1); }
+function ttsPrev()   { paused=false; ttsSpeak(Math.max(0,ci-1)); }
+function ttsStop()   {
+  paused=false; synth.cancel();
+  document.querySelectorAll('.tts-hl').forEach(e => e.classList.remove('tts-hl'));
+  document.getElementById('tts-now').textContent = 'Stopped. Press Play to start again.';
+  document.getElementById('tb-play').style.display=''; document.getElementById('tb-pause').style.display='none'; document.getElementById('tb-resume').style.display='none';
+  document.getElementById('tts-btn').classList.remove('tts-on');
+}
+function ttsRate(v) { rate=parseFloat(v); document.getElementById('tts-rv').textContent=rate.toFixed(1)+'x'; if(synth.speaking&&!synth.paused) ttsSpeak(ci); }
+</script>
+</body>
+</html>
