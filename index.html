@@ -177,17 +177,6 @@
       <p id="dash-sub">Your account is ready.</p>
     </div>
 
-    <div class="dash-section">
-      <div class="section-label">Your collection</div>
-      <div class="collection-card" id="col-card">
-        <div class="col-info">
-          <h3 id="col-name">Loading</h3>
-          <p id="col-desc"></p>
-        </div>
-        <div id="col-badge"></div>
-      </div>
-    </div>
-
     <div class="dash-section" id="pricing-section"></div>
 
   </div>
@@ -239,14 +228,7 @@ function detect(phone) {
 }
 
 function onPhone(val) {
-  const banner = document.getElementById('detect-banner');
   detected = detect(val);
-  if (!detected) { banner.classList.remove('show'); return; }
-  const c = detected;
-  banner.innerHTML = c.live
-    ? '<strong>' + c.name + ' detected.</strong> Your collection is live: ' + c.unis + '.'
-    : '<strong>' + c.name + ' detected.</strong> We are collating papers for ' + c.name + '. You will be notified when ready.';
-  banner.classList.add('show');
 }
 
 function showPage(id) {
@@ -270,15 +252,10 @@ function doRegister() {
 }
 
 function buildDash(c, email) {
-  const colCard = document.getElementById('col-card');
   if (c && c.live) {
     document.getElementById('dash-flag').innerHTML  = c.flag;
-    document.getElementById('dash-title').textContent = 'Welcome to the ' + c.name + ' collection';
+    document.getElementById('dash-title').textContent = 'Welcome to GiftedAcadem';
     document.getElementById('dash-sub').textContent   = 'Registered with ' + email;
-    colCard.classList.add('live');
-    document.getElementById('col-name').textContent = c.name + ' collection';
-    document.getElementById('col-desc').textContent = c.unis;
-    document.getElementById('col-badge').innerHTML  = '<span class="live-pill">Live</span>';
     document.getElementById('pricing-section').innerHTML = `
       <div class="section-label">Subscribe to unlock</div>
       <div class="pricing-card">
@@ -289,7 +266,7 @@ function buildDash(c, email) {
         <p class="price-note">Full access to all papers and the AI tutor. Cancel anytime.</p>
         <ul class="feature-list">
           <li>All past papers, full PDFs</li>
-          <li>Filter by subject, school, and year</li>
+          <li>Filter by subject, university, and year</li>
           <li>AI tutor on every question</li>
           <li>Read aloud on any paper</li>
           <li>All country collections included</li>
@@ -299,30 +276,24 @@ function buildDash(c, email) {
       </div>`;
   } else if (c) {
     document.getElementById('dash-flag').innerHTML  = c.flag;
-    document.getElementById('dash-title').textContent = c.name + ' collection coming soon';
+    document.getElementById('dash-title').textContent = 'Welcome to GiftedAcadem';
     document.getElementById('dash-sub').textContent   = 'Registered with ' + email;
-    document.getElementById('col-name').textContent = c.name;
-    document.getElementById('col-desc').textContent = 'Collating from ' + c.unis;
-    document.getElementById('col-badge').innerHTML  = '<span class="soon-pill">Coming soon</span>';
     document.getElementById('pricing-section').innerHTML = `
       <div class="section-label">While you wait</div>
       <div class="waitlist-card">
         <h3>You are on the list</h3>
-        <p>We will send one email to ${email} when your collection goes live. The Zambia collection is open now.</p>
-        <a onclick="alert('Library coming soon.')">Browse Zambia papers</a>
+        <p>We will send one email to ${email} when papers for your region are ready. Browse the global collection in the meantime.</p>
+        <a onclick="alert('Library coming soon.')">Browse papers</a>
       </div>`;
   } else {
-    document.getElementById('dash-title').textContent = 'You are registered';
-    document.getElementById('dash-sub').textContent   = email;
-    document.getElementById('col-name').textContent = 'Your collection';
-    document.getElementById('col-desc').textContent = 'We will match your region when it goes live';
-    document.getElementById('col-badge').innerHTML  = '<span class="soon-pill">Coming soon</span>';
+    document.getElementById('dash-title').textContent = 'Welcome to GiftedAcadem';
+    document.getElementById('dash-sub').textContent   = 'Registered with ' + email;
     document.getElementById('pricing-section').innerHTML = `
       <div class="section-label">While you wait</div>
       <div class="waitlist-card">
         <h3>You are on the list</h3>
-        <p>We will notify you at ${email} when a collection for your region is ready. The Zambia collection is open now.</p>
-        <a onclick="alert('Library coming soon.')">Browse Zambia papers</a>
+        <p>We will notify you at ${email} when papers for your region are ready. Browse the global collection in the meantime.</p>
+        <a onclick="alert('Library coming soon.')">Browse papers</a>
       </div>`;
   }
 }
