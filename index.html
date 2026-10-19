@@ -1,452 +1,363 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>GiftedAcadem</title>
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap" rel="stylesheet"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebSide | Digital experiences that move the needle</title>
+<meta name="description" content="WebSide is a web development agency delivering bespoke web engineering, performance optimization and sleek UI/UX design for forward thinking brands.">
+<meta name="theme-color" content="#0F4C5C">
+<link rel="icon" href="webside-icon.svg" type="image/svg+xml">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --deep:    #2C2C2A;
-    --mid:     #444441;
-    --mid2:    #5F5E5A;
-    --muted:   #888780;
-    --warm:    #B4B2A9;
-    --surface: #D3D1C7;
-    --near:    #F1EFE8;
-    --white:   #ffffff;
-    --border:  rgba(44,44,42,0.12);
-    --radius:  10px;
-    --radius-sm: 6px;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--near); color: var(--mid); font-size: 15px; line-height: 1.6; min-height: 100vh; }
+:root{
+  --teal:#0F4C5C; --deep:#0A3641; --gold:#BF792B; --goldL:#E3A95F; --bg:#F8FAF9; --white:#fff; --text:#334155;
+  --line:rgba(15,76,92,.14); --gline:rgba(191,121,43,.5);
+  --head:'Plus Jakarta Sans',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font:400 1.05rem/1.7 var(--body);color:var(--text);background:var(--bg)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 1.5rem}
+h1,h2,h3{font-family:var(--head);color:var(--teal);line-height:1.08;letter-spacing:-.03em}
+h1{font-size:clamp(2.7rem,5.6vw,4.7rem);font-weight:800}
+h2{font-size:clamp(2rem,3.8vw,3rem);font-weight:800;margin-bottom:.9rem}
+h3{font-size:1.25rem;font-weight:700;letter-spacing:-.015em;margin-bottom:.4rem}
+p{max-width:58ch}
+section{padding:6.5rem 0;scroll-margin-top:90px}
+.lead{margin-bottom:3.2rem}
+.btn{display:inline-block;font:700 1.02rem var(--head);padding:.95rem 1.8rem;border-radius:10px;text-decoration:none;border:1px solid var(--gold);background:var(--gold);color:var(--white);cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s}
+.btn:hover{transform:scale(1.045);box-shadow:0 12px 26px -10px rgba(191,121,43,.7)}
+.btn.out{background:transparent;color:var(--teal);border-color:var(--teal)}
+.btn.out:hover{background:var(--teal);color:var(--white);box-shadow:none}
 
-  /* WORDMARK */
-  .wordmark { font-family: Georgia, 'Times New Roman', serif; font-size: 26px; letter-spacing: -0.5px; line-height: 1; text-decoration: none; }
-  .wordmark .g { font-weight: 700; font-style: italic; color: var(--deep); }
-  .wordmark .a { font-weight: 400; font-style: normal; color: var(--mid); }
+/* header */
+.nav{position:sticky;top:0;z-index:30;background:rgba(248,250,249,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--gold)}
+.nav .in{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.45rem 1.5rem}
+.brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;font:800 1.55rem var(--head);color:var(--teal);letter-spacing:-.03em}
+.brand b{color:var(--gold)}
+.brand img{display:block;height:66px;width:auto}
+nav{display:flex;align-items:center;gap:2rem;font-weight:500;font-size:.98rem}
+nav a:not(.btn){text-decoration:none;color:var(--text)}
+nav a:not(.btn):hover{color:var(--teal);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:8px}
+nav .btn{padding:.65rem 1.3rem;font-size:.98rem}
+.menu{display:none;font:700 .95rem var(--head);color:var(--teal);background:transparent;border:1px solid var(--teal);border-radius:8px;padding:.5rem 1rem;cursor:pointer}
 
-  /* NAV */
-  nav { height: 54px; padding: 0 6%; display: flex; align-items: center; justify-content: space-between; background: var(--white); border-bottom: 0.5px solid var(--border); position: sticky; top: 0; z-index: 100; }
-  .nav-reg { font-size: 13px; padding: 7px 18px; border-radius: var(--radius-sm); background: var(--deep); color: var(--white); border: none; cursor: pointer; font-weight: 500; font-family: inherit; }
-  .nav-reg:hover { background: var(--mid); }
+/* hero */
+.hero{padding:5rem 0 6.5rem;background:
+  radial-gradient(circle at 1px 1px,rgba(15,76,92,.09) 1px,transparent 0) 0 0/26px 26px,var(--bg)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:4rem;align-items:center}
+.hero h1 span{color:var(--gold)}
+.hero p.sub{font-size:1.2rem;margin:1.6rem 0 2.2rem;max-width:50ch}
+.actions{display:flex;flex-wrap:wrap;gap:.9rem}
+.stage{position:relative;padding-bottom:2.5rem}
 
-  /* PAGES */
-  .page { display: none; }
-  .page.active { display: block; }
+/* browser frames and mock UI (decorative) */
+.bw{background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 40px 70px -35px rgba(10,54,65,.55)}
+.bw .bar{display:flex;align-items:center;gap:6px;padding:.6rem .85rem;background:var(--teal)}
+.bw .bar i{width:9px;height:9px;border-radius:50%;background:#fff;opacity:.9}
+.bw .bar span{margin-left:.6rem;flex:1;background:rgba(255,255,255,.16);color:#fff;border-radius:99px;font-size:.72rem;padding:.05rem .8rem}
+.bw .bar::after{content:"";width:34px;height:9px;border-radius:3px;background:var(--gold)}
+.ui{padding:14px;display:grid;gap:11px;background:var(--bg)}
+.nv{display:flex;align-items:center;gap:8px}
+.nv b{width:24px;height:9px;border-radius:3px;background:var(--teal)}
+.nv i{height:5px;width:30px;border-radius:3px;background:#CBD5D8}
+.nv u{margin-left:auto;width:48px;height:15px;border-radius:99px;background:var(--gold)}
+.hb{background:linear-gradient(135deg,var(--teal),var(--deep));border-radius:9px;padding:34px 22px;display:grid;gap:10px}
+.hb i{height:10px;border-radius:3px;background:#fff;opacity:.95;width:68%}
+.hb i+i{height:6px;opacity:.5;width:46%}
+.hb u{width:70px;height:18px;border-radius:99px;background:var(--gold);margin-top:6px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.cards div{background:#fff;border:1px solid #E1E8EA;border-radius:7px;height:78px;padding:10px;display:grid;gap:6px;align-content:start}
+.cards i{height:5px;border-radius:3px;background:#CBD5D8}
+.cards i:first-child{width:46%;background:var(--gold)}
+.float{position:absolute;left:-3rem;bottom:-.6rem;width:48%}
+.stat{padding:14px 16px;background:#fff}
+.stat small{display:block;font-size:.72rem;color:var(--text)}
+.stat strong{font:800 2rem var(--head);color:var(--teal);letter-spacing:-.03em;line-height:1.1}
+.stat strong em{font-style:normal;color:var(--gold)}
+.bars{display:flex;align-items:flex-end;gap:5px;height:54px;margin-top:8px}
+.bars i{flex:1;background:var(--teal);opacity:.85;border-radius:3px 3px 0 0}
+.bars i:last-child{background:var(--gold);opacity:1}
 
-  /* LANDING */
-  .landing { min-height: calc(100vh - 54px); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 6%; text-align: center; }
+/* trust */
+.trust{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:0}
+.trust .wrap{display:grid;grid-template-columns:repeat(3,1fr)}
+.trust div{padding:2.4rem 1.5rem;text-align:center}
+.trust div+div{border-left:1px solid var(--gline)}
+.trust strong{display:block;font:800 clamp(2rem,3.6vw,3rem) var(--head);color:var(--teal);letter-spacing:-.03em;line-height:1}
+.trust span{display:block;margin-top:.5rem;font-weight:500}
 
-  .landing-wordmark { font-family: Georgia, 'Times New Roman', serif; font-size: 52px; letter-spacing: -1px; line-height: 1; margin-bottom: 20px; }
-  .landing-wordmark .g { font-weight: 700; font-style: italic; color: var(--deep); }
-  .landing-wordmark .a { font-weight: 400; font-style: normal; color: var(--mid); }
+/* services */
+.cardgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.card{background:var(--white);border:1px solid var(--gline);border-radius:16px;padding:2.2rem 2rem;transition:box-shadow .25s,border-color .25s,transform .25s}
+.card:hover{border-color:var(--gold);box-shadow:0 0 0 4px rgba(191,121,43,.14),0 24px 40px -28px rgba(15,76,92,.5);transform:translateY(-4px)}
+.ico{width:52px;height:52px;border-radius:12px;background:var(--teal);display:grid;place-items:center;margin-bottom:1.4rem}
+.ico svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.2rem}
+.tags span{font-size:.8rem;font-weight:500;color:var(--teal);border:1px solid var(--gline);border-radius:99px;padding:.1rem .75rem}
 
-  .tagline { font-family: 'Lora', Georgia, serif; font-size: 17px; color: var(--mid2); max-width: 420px; margin-bottom: 10px; font-weight: 400; line-height: 1.65; }
-  .sub-tagline { font-size: 13px; color: var(--muted); max-width: 380px; margin-bottom: 44px; }
+/* work */
+.work{background:var(--teal);color:rgba(255,255,255,.82)}
+.work h2,.work h3{color:#fff}
+.work .lead p{color:rgba(255,255,255,.8)}
+.cases{display:grid;grid-template-columns:repeat(12,1fr);gap:2rem}
+.case{grid-column:span 7}
+.case.b{grid-column:span 5;margin-top:4rem}
+.case.c{grid-column:span 12}
+.frame{border-radius:14px;overflow:hidden;border:1px solid var(--gline)}
+.zoom{transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.case:hover .zoom{transform:scale(1.045)}
+.frame .bw{border-radius:0;box-shadow:none;border:0}
+.meta{display:flex;justify-content:space-between;align-items:flex-start;gap:1.2rem;margin-top:1.1rem}
+.meta p{font-size:.95rem;margin-top:.2rem}
+.metric{flex:none;text-align:right;border-left:1px solid var(--gold);padding-left:1rem}
+.metric strong{display:block;font:800 1.7rem var(--head);color:var(--goldL);letter-spacing:-.03em;line-height:1.1}
+.metric span{font-size:.82rem}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.tiles i{height:62px;border-radius:7px;background:linear-gradient(160deg,#E4ECEE,#C8D8DC)}
+.tiles i:nth-child(2){background:linear-gradient(160deg,#D9964A,var(--gold))}
+.tiles i:nth-child(3){background:linear-gradient(160deg,var(--teal),var(--deep))}
+.dash{display:grid;grid-template-columns:54px 1fr;gap:12px;padding:14px;background:var(--bg)}
+.dash .side{display:grid;gap:8px;align-content:start}
+.dash .side i{height:8px;border-radius:3px;background:#CBD5D8}
+.dash .side i:first-child{background:var(--gold)}
+.dash .main{display:grid;gap:10px}
+.dash .two{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.dash .two div{background:#fff;border:1px solid #E1E8EA;border-radius:7px;padding:10px;display:grid;gap:5px}
+.dash .two i{height:5px;border-radius:3px;background:#CBD5D8;width:55%}
+.dash .two b{height:11px;border-radius:3px;background:var(--teal);width:40%}
+.legal{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;padding:20px;background:var(--bg);align-items:center}
+.legal .tx{display:grid;gap:9px}
+.legal .tx i{height:12px;border-radius:3px;background:var(--teal);width:75%}
+.legal .tx i+i{height:6px;background:#CBD5D8;width:90%}
+.legal .tx i+i+i{width:60%}
+.legal .tx u{width:84px;height:20px;border-radius:99px;background:var(--gold);margin-top:6px}
+.legal .img{height:110px;border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--deep));position:relative}
+.legal .img::after{content:"";position:absolute;right:16px;bottom:16px;width:34px;height:34px;border-radius:50%;background:var(--gold)}
+.note{margin-top:2.2rem;font-size:.88rem;opacity:.75}
 
-  /* FORM CARD */
-  .reg-card { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 28px 32px; width: 100%; max-width: 380px; text-align: left; }
+/* process */
+.steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem}
+.steps li{border-top:1px solid var(--gold);padding-top:1.6rem;position:relative}
+.steps li::before{content:"";position:absolute;top:-5px;left:0;width:9px;height:9px;border-radius:50%;background:var(--gold)}
+.steps .n{display:block;font:800 3.4rem var(--head);color:transparent;-webkit-text-stroke:1.5px var(--gold);letter-spacing:-.04em;line-height:1;margin-bottom:1rem}
 
-  .detect-banner { display: none; background: var(--near); border: 0.5px solid var(--warm); border-radius: var(--radius-sm); padding: 10px 14px; margin-bottom: 18px; font-size: 13px; color: var(--mid2); line-height: 1.55; }
-  .detect-banner.show { display: block; }
+/* closing */
+.cta{background:var(--teal);color:rgba(255,255,255,.85)}
+.cta .wrap{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:center}
+.cta h2{color:#fff}
+.cta .rule{width:72px;height:2px;background:var(--gold);margin:1.4rem 0}
+form{display:grid;gap:1rem;background:var(--white);border:1px solid var(--gold);border-radius:18px;padding:2rem;color:var(--text)}
+label{font:600 .9rem var(--head);color:var(--teal)}
+input,textarea{width:100%;font:inherit;padding:.8rem .95rem;margin-top:.3rem;background:var(--bg);border:1px solid #CBD5D8;border-radius:10px;color:var(--text)}
+input:focus,textarea:focus{outline:2px solid var(--gold);border-color:transparent}
+textarea{min-height:110px;resize:vertical}
+form .btn{justify-self:stretch;text-align:center;font-size:1.08rem;padding:1.05rem}
 
-  .field { margin-bottom: 16px; }
-  .field label { display: block; font-size: 11px; font-weight: 500; color: var(--muted); margin-bottom: 6px; letter-spacing: 0.3px; text-transform: uppercase; }
-  .field input { width: 100%; padding: 10px 12px; border-radius: var(--radius-sm); border: 0.5px solid var(--warm); background: var(--near); font-size: 14px; color: var(--deep); font-family: inherit; outline: none; }
-  .field input:focus { border-color: var(--mid2); box-shadow: 0 0 0 3px rgba(95,94,90,0.1); background: var(--white); }
-  .field .hint { font-size: 11px; color: var(--muted); margin-top: 5px; }
+footer{background:var(--deep);color:rgba(255,255,255,.75);border-top:2px solid var(--gold);padding:2.6rem 0;font-size:.93rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:1.5rem 3rem;justify-content:space-between;align-items:center}
+footer .brand{color:#fff;font-size:1.3rem}
+footer .brand img{height:50px}
+footer ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.5rem 1.6rem}
+footer a{text-decoration:none}footer a:hover{color:var(--goldL);text-decoration:underline;text-underline-offset:6px}
+footer .copy{width:100%;border-top:1px solid rgba(255,255,255,.14);padding-top:1.4rem;font-size:.85rem}
 
-  .reg-btn { width: 100%; padding: 12px; border-radius: var(--radius-sm); background: var(--deep); color: var(--white); font-size: 14px; font-weight: 600; border: none; cursor: pointer; font-family: inherit; margin-top: 4px; letter-spacing: 0.1px; }
-  .reg-btn:hover { background: var(--mid); }
-  .reg-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+/* entry animation */
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
 
-  /* DASHBOARD */
-  .dash { max-width: 600px; margin: 0 auto; padding: 44px 6% 80px; }
-
-  .welcome-block { margin-bottom: 40px; border-bottom: 0.5px solid var(--border); padding-bottom: 28px; }
-  .welcome-flag { font-size: 32px; margin-bottom: 12px; }
-  .welcome-block h2 { font-family: 'Lora', Georgia, serif; font-size: 22px; font-weight: 700; color: var(--deep); margin-bottom: 5px; line-height: 1.25; }
-  .welcome-block p { font-size: 13px; color: var(--muted); }
-
-  .dash-section { margin-bottom: 32px; }
-  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-
-  /* collection card */
-  .collection-card { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  .collection-card.live { background: var(--near); border-color: var(--warm); }
-  .col-info h3 { font-size: 14px; font-weight: 600; color: var(--deep); margin-bottom: 3px; }
-  .col-info p { font-size: 12px; color: var(--muted); }
-  .live-pill { font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--surface); color: var(--mid2); letter-spacing: 0.3px; text-transform: uppercase; white-space: nowrap; }
-  .soon-pill { font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--near); color: var(--muted); letter-spacing: 0.3px; text-transform: uppercase; white-space: nowrap; }
-
-  /* pricing */
-  .pricing-card { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 24px 28px; }
-  .price-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px; }
-  .price-big { font-family: 'Lora', Georgia, serif; font-size: 34px; font-weight: 700; color: var(--deep); letter-spacing: -0.5px; }
-  .price-per { font-size: 13px; color: var(--muted); }
-  .price-note { font-size: 12px; color: var(--muted); margin-bottom: 20px; }
-  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 22px; }
-  .feature-list li { font-size: 13px; color: var(--mid2); display: flex; gap: 10px; align-items: flex-start; }
-  .feature-list li::before { content: 'v'; font-family: Georgia, serif; font-weight: 700; color: var(--mid2); font-size: 11px; margin-top: 2px; flex-shrink: 0; }
-  .sub-btn { width: 100%; padding: 12px; border-radius: var(--radius-sm); background: var(--deep); color: var(--white); font-size: 14px; font-weight: 600; border: none; cursor: pointer; font-family: inherit; }
-  .sub-btn:hover { background: var(--mid); }
-  .pay-note { font-size: 11px; color: var(--muted); text-align: center; margin-top: 9px; }
-
-  /* waitlist */
-  .waitlist-card { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 24px 28px; }
-  .waitlist-card h3 { font-family: 'Lora', Georgia, serif; font-size: 16px; font-weight: 600; color: var(--deep); margin-bottom: 8px; }
-  .waitlist-card p { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
-  .waitlist-card a { font-size: 13px; color: var(--mid2); font-weight: 500; text-decoration: underline; cursor: pointer; }
-
-  /* TOOLS */
-  #ga-toolbar { position: fixed; bottom: 20px; right: 20px; z-index: 200; display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
-  .ga-btn { padding: 8px 15px; border-radius: 20px; font-size: 12px; font-weight: 500; border: 0.5px solid var(--warm); cursor: pointer; background: var(--white); color: var(--mid2); font-family: inherit; white-space: nowrap; }
-  .ga-btn:hover { background: var(--near); }
-  .ga-btn.tts-on { background: var(--deep); color: var(--white); border-color: var(--deep); }
-
-  #tts-panel { display: none; position: fixed; bottom: 72px; right: 20px; z-index: 199; width: 272px; background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 14px; }
-  #tts-panel.show { display: block; }
-  #tts-panel h4 { font-size: 12px; font-weight: 600; color: var(--deep); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-  #tts-now { font-size: 12px; color: var(--muted); background: var(--near); padding: 7px 9px; border-radius: var(--radius-sm); min-height: 34px; margin-bottom: 8px; line-height: 1.5; }
-  .tts-row { display: flex; gap: 4px; flex-wrap: wrap; }
-  .tts-btn { flex: 1; min-width: 48px; padding: 6px 6px; font-size: 11px; border-radius: var(--radius-sm); border: 0.5px solid var(--warm); background: transparent; cursor: pointer; color: var(--mid2); font-family: inherit; }
-  .tts-btn:hover { background: var(--near); }
-  .tts-btn.danger { border-color: var(--warm); color: var(--muted); }
-  #tts-speed { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 11px; color: var(--muted); }
-  #tts-speed input { flex: 1; }
-
-  @media print {
-    #ga-toolbar, #tts-panel, nav { display: none !important; }
-    .page { display: block !important; }
-    body { font-size: 11pt; background: #fff; }
-    @page { margin: 18mm 16mm; }
-  }
-  @media (max-width: 480px) {
-    .reg-card { padding: 20px; }
-    .landing-wordmark { font-size: 38px; }
-    .dash { padding: 28px 5% 60px; }
-  }
+@media (max-width:980px){
+  .brand img{height:54px}
+  section{padding:4.2rem 0}
+  .hero{padding:3rem 0 4.5rem}
+  .hero .wrap,.cta .wrap,.cardgrid,.steps{grid-template-columns:1fr}
+  .hero .wrap{gap:3rem}
+  .float{left:0;width:56%}
+  .case,.case.b,.case.c{grid-column:span 12;margin-top:0}
+  .menu{display:inline-block}
+  nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bg);flex-direction:column;align-items:flex-start;gap:1.1rem;padding:1.3rem 1.5rem 1.7rem;border-bottom:1px solid var(--gold)}
+  nav.open{display:flex}
+}
+@media (max-width:620px){
+  .trust .wrap{grid-template-columns:1fr}
+  .trust div+div{border-left:0;border-top:1px solid var(--gline)}
+  .meta{flex-direction:column}.metric{text-align:left;border-left:0;padding-left:0}
+  .legal{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .rv{opacity:1;transform:none;transition:none}
+  .btn:hover,.card:hover,.case:hover .zoom{transform:none}
+}
 </style>
 </head>
 <body>
 
-<nav>
-  <a class="wordmark" href="#">
-    <span class="g">Gifted</span><span class="a">Academ</span>
-  </a>
-  <button class="nav-reg" onclick="showPage('landing')">Register</button>
-</nav>
-
-<!-- LANDING -->
-<div class="page active" id="page-landing">
-  <div class="landing">
-    <div class="landing-wordmark"><span class="g">Gifted</span><span class="a">Academ</span></div>
-    <p class="tagline">Past papers for Biomedical Science students across Africa.</p>
-    <p class="sub-tagline">Organised by course and university.</p>
-
-    <div class="reg-card">
-      <div class="detect-banner" id="detect-banner"></div>
-
-      <div class="field">
-        <label>Phone number</label>
-        <input type="tel" id="f-phone" placeholder="+260 97 123 4567"
-               oninput="onPhone(this.value)" autocomplete="tel"/>
-        <div class="hint">Include your country code, e.g. +260 for Zambia</div>
-      </div>
-
-      <div class="field">
-        <label>Email address</label>
-        <input type="email" id="f-email" placeholder="you@email.com" autocomplete="email"/>
-      </div>
-
-      <button class="reg-btn" id="reg-btn" onclick="doRegister()">Create account</button>
-    </div>
+<header class="nav">
+  <div class="in wrap">
+    <a class="brand" href="#top" aria-label="WebSide home"><img src="webside-logo.svg" alt="WebSide" height="66"></a>
+    <button class="menu" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+      <a class="btn" href="#contact">Start a Project</a>
+    </nav>
   </div>
-</div>
+</header>
 
-<!-- DASHBOARD -->
-<div class="page" id="page-dash">
-  <div class="dash">
-
-    <div class="welcome-block">
-      <div class="welcome-flag" id="dash-flag">&#127979;</div>
-      <h2 id="dash-title">Welcome to GiftedAcadem</h2>
-      <p id="dash-sub">Your account is ready.</p>
-    </div>
-
-    <div class="dash-section" id="pricing-section"></div>
-
-  </div>
-</div>
-
-<!-- TOOLS -->
-<div id="ga-toolbar">
-  <button class="ga-btn" onclick="window.print()">Print</button>
-  <button class="ga-btn" id="tts-btn" onclick="toggleTTS()">Read aloud</button>
-</div>
-<div id="tts-panel">
-  <h4>Read aloud</h4>
-  <div id="tts-now">Press Play to begin.</div>
-  <div class="tts-row">
-    <button class="tts-btn" id="tb-play"   onclick="ttsPlay()">Play</button>
-    <button class="tts-btn" id="tb-pause"  onclick="ttsPause()"  style="display:none">Pause</button>
-    <button class="tts-btn" id="tb-resume" onclick="ttsResume()" style="display:none">Resume</button>
-    <button class="tts-btn" onclick="ttsPrev()">Prev</button>
-    <button class="tts-btn" onclick="ttsNext()">Next</button>
-    <button class="tts-btn danger" onclick="ttsStop()">Stop</button>
-  </div>
-  <div id="tts-speed">
-    <span>Speed</span>
-    <input type="range" min="0.5" max="2" step="0.1" value="1" oninput="ttsRate(this.value)" id="tts-r">
-    <span id="tts-rv">1.0x</span>
-  </div>
-</div>
-
-<script>
-const countries = [
-  { prefix:'+260', flag:'&#127487;&#127474;', name:'Zambia',       live:true,  unis:'UNZA, CBU, Mulungushi' },
-  { prefix:'+27',  flag:'&#127487;&#127462;', name:'South Africa', live:true,  unis:'UCT, Wits, UWC' },
-  { prefix:'+254', flag:'&#127472;&#127466;', name:'Kenya',        live:true,  unis:'University of Nairobi' },
-  { prefix:'+234', flag:'&#127475;&#127468;', name:'Nigeria',      live:false, unis:'UNILAG, UI, ABU' },
-  { prefix:'+233', flag:'&#127468;&#127469;', name:'Ghana',        live:false, unis:'University of Ghana, KNUST' },
-  { prefix:'+256', flag:'&#127482;&#127468;', name:'Uganda',       live:false, unis:'Makerere University' },
-  { prefix:'+255', flag:'&#127481;&#127487;', name:'Tanzania',     live:false, unis:'UDSM' },
-  { prefix:'+265', flag:'&#127474;&#127484;', name:'Malawi',       live:false, unis:'University of Malawi' },
-  { prefix:'+263', flag:'&#127487;&#127484;', name:'Zimbabwe',     live:false, unis:'University of Zimbabwe' },
-  { prefix:'+250', flag:'&#127479;&#127484;', name:'Rwanda',       live:false, unis:'University of Rwanda' },
-  { prefix:'+251', flag:'&#127466;&#127481;', name:'Ethiopia',     live:false, unis:'AAU' },
-].sort((a,b) => b.prefix.length - a.prefix.length);
-
-let detected = null;
-
-function detect(phone) {
-  const p = phone.replace(/\s/g,'');
-  return countries.find(c => p.startsWith(c.prefix)) || null;
-}
-
-function onPhone(val) {
-  detected = detect(val);
-}
-
-function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + id).classList.add('active');
-}
-
-function doRegister() {
-  const phone = document.getElementById('f-phone').value.trim();
-  const email = document.getElementById('f-email').value.trim();
-  if (!phone || !email) { alert('Please enter your phone number and email.'); return; }
-  if (!phone.startsWith('+')) { alert('Please include your country code, e.g. +260 97 123 4567'); return; }
-  if (!email.includes('@')) { alert('Please enter a valid email address.'); return; }
-  const btn = document.getElementById('reg-btn');
-  btn.disabled = true; btn.textContent = 'Creating account...';
-  setTimeout(() => {
-    buildDash(detected, email);
-    showPage('dash');
-    btn.disabled = false; btn.textContent = 'Create account';
-  }, 700);
-}
-
-function buildDash(c, email) {
-  if (c && c.live) {
-    document.getElementById('dash-flag').innerHTML  = c.flag;
-    document.getElementById('dash-title').textContent = 'Welcome to GiftedAcadem';
-    document.getElementById('dash-sub').textContent   = 'Registered with ' + email;
-    document.getElementById('pricing-section').innerHTML = `
-      <div class="section-label">Subscribe to unlock</div>
-      <div class="pricing-card">
-        <div class="price-row">
-          <span class="price-big">K24.12</span>
-          <span class="price-per">per month</span>
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div class="rv">
+        <h1>We Build Digital Experiences That <span>Move The Needle.</span></h1>
+        <p class="sub">Bespoke web engineering, performance optimization, and sleek UI/UX design for forward thinking brands.</p>
+        <div class="actions">
+          <a class="btn" href="#contact">Launch Your Website &rarr;</a>
+          <a class="btn out" href="#work">Explore Our Work</a>
         </div>
-        <p class="price-note">Full access to all papers and the AI tutor. Cancel anytime.</p>
-        <ul class="feature-list">
-          <li>All past papers, full PDFs</li>
-          <li>Filter by subject, university, and year</li>
-          <li>AI tutor on every question</li>
-          <li>Read aloud on any paper</li>
-          <li>All country collections included</li>
-        </ul>
-        <button class="sub-btn" onclick="payWithMoneyUnify()">Subscribe now</button>
-        <p class="pay-note">MTN Mobile Money, Airtel Money, Visa, Mastercard</p>
-      </div>`;
-  } else if (c) {
-    document.getElementById('dash-flag').innerHTML  = c.flag;
-    document.getElementById('dash-title').textContent = 'Welcome to GiftedAcadem';
-    document.getElementById('dash-sub').textContent   = 'Registered with ' + email;
-    document.getElementById('pricing-section').innerHTML = `
-      <div class="section-label">While you wait</div>
-      <div class="waitlist-card">
-        <h3>You are on the list</h3>
-        <p>We will send one email to ${email} when papers for your region are ready. Browse the global collection in the meantime.</p>
-        <a onclick="alert('Library coming soon.')">Browse papers</a>
-      </div>`;
-  } else {
-    document.getElementById('dash-title').textContent = 'Welcome to GiftedAcadem';
-    document.getElementById('dash-sub').textContent   = 'Registered with ' + email;
-    document.getElementById('pricing-section').innerHTML = `
-      <div class="section-label">While you wait</div>
-      <div class="waitlist-card">
-        <h3>You are on the list</h3>
-        <p>We will notify you at ${email} when papers for your region are ready. Browse the global collection in the meantime.</p>
-        <a onclick="alert('Library coming soon.')">Browse papers</a>
-      </div>`;
-  }
-}
+      </div>
+      <div class="stage rv" style="--d:.15s" aria-hidden="true">
+        <div class="bw">
+          <div class="bar"><i></i><i></i><i></i><span>yourbrand.com</span></div>
+          <div class="ui">
+            <div class="nv"><b></b><i></i><i></i><i></i><u></u></div>
+            <div class="hb"><i></i><i></i><u></u></div>
+            <div class="cards"><div><i></i><i></i></div><div><i></i><i></i></div><div><i></i><i></i></div></div>
+          </div>
+        </div>
+        <div class="bw float">
+          <div class="stat"><small>Conversion rate</small><strong><em>+120%</em></strong>
+            <div class="bars"><i style="height:30%"></i><i style="height:42%"></i><i style="height:38%"></i><i style="height:60%"></i><i style="height:72%"></i><i style="height:100%"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-/* TTS */
-const synth = window.speechSynthesis;
-let chunks=[], ci=0, rate=1.0, paused=false;
-const hlStyle = document.createElement('style');
-hlStyle.textContent = '.tts-hl { outline: 1.5px solid #5F5E5A !important; outline-offset: 3px; border-radius: 3px; background: rgba(95,94,90,0.07) !important; }';
-document.head.appendChild(hlStyle);
+  <div class="trust">
+    <div class="wrap">
+      <div class="rv"><strong>&lt; 1s</strong><span>Load Speeds</span></div>
+      <div class="rv" style="--d:.1s"><strong>99.9%</strong><span>Architecture Uptime</span></div>
+      <div class="rv" style="--d:.2s"><strong>100%</strong><span>Custom Tailored Code</span></div>
+    </div>
+  </div>
 
-function buildChunks() {
-  chunks = [];
-  ['.tagline','.sub-tagline','h2','h3','.col-info p','.price-big','.price-note','.feature-list li','.waitlist-card p'].forEach(s =>
-    document.querySelectorAll(s).forEach(el => {
-      const t = el.innerText.trim().replace(/\s+/g,' ');
-      if (t.length > 2) chunks.push({text:t, el});
-    })
-  );
-}
-function toggleTTS() {
-  const p = document.getElementById('tts-panel');
-  p.classList.toggle('show');
-  if (p.classList.contains('show') && !chunks.length) buildChunks();
-}
-function ttsSpeak(i) {
-  if (i < 0 || i >= chunks.length) { ttsStop(); return; }
-  ci = i; synth.cancel();
-  document.querySelectorAll('.tts-hl').forEach(e => e.classList.remove('tts-hl'));
-  const c = chunks[i];
-  c.el.classList.add('tts-hl');
-  c.el.scrollIntoView({behavior:'smooth', block:'center'});
-  document.getElementById('tts-now').textContent = '(' + (i+1) + ' of ' + chunks.length + ') ' + c.text;
-  const u = new SpeechSynthesisUtterance(c.text);
-  u.rate = rate; u.lang = 'en-ZA';
-  u.onend = () => { if (!paused) ttsSpeak(ci+1); };
-  synth.speak(u);
-  document.getElementById('tb-play').style.display   = 'none';
-  document.getElementById('tb-pause').style.display  = '';
-  document.getElementById('tb-resume').style.display = 'none';
-  document.getElementById('tts-btn').classList.add('tts-on');
-}
-function ttsPlay()   { buildChunks(); paused=false; ttsSpeak(0); }
-function ttsPause()  { paused=true; synth.pause(); document.getElementById('tb-pause').style.display='none'; document.getElementById('tb-resume').style.display=''; }
-function ttsResume() { paused=false; synth.resume(); document.getElementById('tb-pause').style.display=''; document.getElementById('tb-resume').style.display='none'; }
-function ttsNext()   { paused=false; ttsSpeak(ci+1); }
-function ttsPrev()   { paused=false; ttsSpeak(Math.max(0,ci-1)); }
-function ttsStop()   {
-  paused=false; synth.cancel();
-  document.querySelectorAll('.tts-hl').forEach(e => e.classList.remove('tts-hl'));
-  document.getElementById('tts-now').textContent = 'Stopped. Press Play to start again.';
-  document.getElementById('tb-play').style.display=''; document.getElementById('tb-pause').style.display='none'; document.getElementById('tb-resume').style.display='none';
-  document.getElementById('tts-btn').classList.remove('tts-on');
-}
-function ttsRate(v) { rate=parseFloat(v); document.getElementById('tts-rv').textContent=rate.toFixed(1)+'x'; if(synth.speaking&&!synth.paused) ttsSpeak(ci); }
-</script>
-<!-- MoneyUnify payment — MTN, Airtel, Zamtel -->
+  <section id="services">
+    <div class="wrap">
+      <div class="lead rv">
+        <h2>Core Services</h2>
+        <p>Everything your brand needs to look exceptional and perform even better, from first sketch to scale.</p>
+      </div>
+      <div class="cardgrid">
+        <article class="card rv">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></div>
+          <h3>Custom Web Development</h3>
+          <p>Hand built with React and Next.js for sites that load instantly, rank well and scale without drama.</p>
+          <div class="tags"><span>React</span><span>Next.js</span><span>High Performance</span></div>
+        </article>
+        <article class="card rv" style="--d:.1s">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg></div>
+          <h3>Creative UI/UX Design</h3>
+          <p>Intuitive, engaging interfaces designed around a single goal: turning visitors into customers.</p>
+          <div class="tags"><span>Intuitive</span><span>Engaging</span><span>Conversion Focused</span></div>
+        </article>
+        <article class="card rv" style="--d:.2s">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11h10.2L20 7H6.5M9 20a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z"/></svg></div>
+          <h3>Scalable Web Apps and E-Commerce</h3>
+          <p>Fast, secure digital platforms built to handle growth, payments and peak traffic with confidence.</p>
+          <div class="tags"><span>Fast</span><span>Secure</span><span>Scalable</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="work" id="work">
+    <div class="wrap">
+      <div class="lead rv">
+        <h2>Featured Work</h2>
+        <p>A selection of recent projects, each built around a measurable result.</p>
+      </div>
+      <div class="cases">
+        <article class="case rv">
+          <div class="frame" aria-hidden="true"><div class="zoom"><div class="bw"><div class="bar"><i></i><i></i><i></i><span>northwindoutfitters.com</span></div>
+            <div class="ui"><div class="nv"><b></b><i></i><i></i><i></i><u></u></div><div class="hb"><i></i><i></i><u></u></div><div class="tiles"><i></i><i></i><i></i><i></i></div></div></div></div></div>
+          <div class="meta"><div><h3>Northwind Outfitters</h3><p>A faster, cleaner storefront and checkout for an outdoor retailer.</p></div>
+            <div class="metric"><strong>+120%</strong><span>Conversion Rate</span></div></div>
+        </article>
+        <article class="case b rv" style="--d:.12s">
+          <div class="frame" aria-hidden="true"><div class="zoom"><div class="bw"><div class="bar"><i></i><i></i><i></i><span>orbitanalytics.io</span></div>
+            <div class="dash"><div class="side"><i></i><i></i><i></i><i></i></div><div class="main"><div class="two"><div><i></i><b></b></div><div><i></i><b></b></div></div><div class="bars" style="height:62px"><i style="height:35%"></i><i style="height:55%"></i><i style="height:45%"></i><i style="height:70%"></i><i style="height:62%"></i><i style="height:100%"></i></div></div></div></div></div></div>
+          <div class="meta"><div><h3>Orbit Analytics</h3><p>A responsive dashboard rebuilt for speed on every device.</p></div>
+            <div class="metric"><strong>3.2x</strong><span>Faster Load Time</span></div></div>
+        </article>
+        <article class="case c rv">
+          <div class="frame" aria-hidden="true"><div class="zoom"><div class="bw"><div class="bar"><i></i><i></i><i></i><span>hartwelllegal.com</span></div>
+            <div class="legal"><div class="tx"><i></i><i></i><i></i><u></u></div><div class="img"></div></div></div></div></div>
+          <div class="meta"><div><h3>Hartwell Legal</h3><p>A confident, clear presence that turns searches into consultations.</p></div>
+            <div class="metric"><strong>+68%</strong><span>Qualified Enquiries</span></div></div>
+        </article>
+      </div>
+      <p class="note">Concept projects shown for illustration. Replace with your own case studies as they are completed.</p>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="wrap">
+      <div class="lead rv">
+        <h2>Our Process</h2>
+        <p>A simple, transparent roadmap from first conversation to a launch you can be proud of.</p>
+      </div>
+      <ol class="steps">
+        <li class="rv"><span class="n">01</span><h3>Discovery &amp; Strategy</h3><p>We learn your goals, audience and market, then map a clear plan with measurable targets.</p></li>
+        <li class="rv" style="--d:.12s"><span class="n">02</span><h3>Precision Design &amp; Code</h3><p>Interfaces are designed with intent and built with clean, performant code, reviewed at every step.</p></li>
+        <li class="rv" style="--d:.24s"><span class="n">03</span><h3>Launch &amp; Scale</h3><p>We launch with testing, monitoring and analytics, then keep improving as you grow.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <div class="wrap">
+      <div class="rv">
+        <h2>Ready to elevate your digital presence?</h2>
+        <div class="rule"></div>
+        <p>Tell us about your project and we will reply within one working day with clear next steps.</p>
+      </div>
+      <form class="rv" style="--d:.12s" action="mailto:hello@websidezambia.com" method="post" enctype="text/plain">
+        <label>Name<input name="name" type="text" required autocomplete="name"></label>
+        <label>Email<input name="email" type="email" required autocomplete="email"></label>
+        <label>Project Brief<textarea name="brief" required></textarea></label>
+        <button class="btn" type="submit">Start My Project &rarr;</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="WebSide home"><img src="webside-logo-light.svg" alt="WebSide" height="50"></a>
+    <ul aria-label="Footer navigation"><li><a href="#services">Services</a></li><li><a href="#work">Work</a></li><li><a href="#process">Process</a></li><li><a href="#contact">Contact</a></li></ul>
+    <ul aria-label="Social channels"><li><a href="#">LinkedIn</a></li><li><a href="#">Instagram</a></li><li><a href="#">X</a></li><li><a href="#">GitHub</a></li></ul>
+    <div class="copy">&copy; 2026 WebSide. All rights reserved.</div>
+  </div>
+</footer>
+
 <script>
-function payWithMoneyUnify() {
-  const email = document.getElementById('f-email').value.trim()
-              || localStorage.getItem('ga_email') || '';
-  const phone = document.getElementById('f-phone').value.trim()
-              || localStorage.getItem('ga_phone') || '';
-
-  if (!phone) {
-    alert('Please enter your phone number before subscribing.');
-    showPage('landing');
-    return;
-  }
-
-  const cleanPhone = phone.replace(/\s/g,'').replace('+','');
-  const btn = document.querySelector('.sub-btn');
-  if (btn) { btn.disabled = true; btn.textContent = 'Sending payment request...'; }
-
-  fetch('https://api.moneyunify.one/payments/request', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Accept': 'application/json'
-    },
-    body: new URLSearchParams({
-      from_payer: cleanPhone,
-      amount:     '24.12',
-      auth_id:    '01KS7ZB93G7GPYKTAVXYPWRMF9'
-      /* Replace 01KS7ZB93G7GPYKTAVXYPWRMF9 with your real auth_id
-         from moneyunify.one/businesses after creating your account */
-    })
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (!data.isError && data.data && data.data.transaction_id) {
-      const txId = data.data.transaction_id;
-      localStorage.setItem('ga_email', email);
-      localStorage.setItem('ga_phone', cleanPhone);
-      if (btn) { btn.textContent = 'Check your phone...'; }
-      showPaymentPrompt(txId, cleanPhone, email);
-    } else {
-      if (btn) { btn.disabled = false; btn.textContent = 'Subscribe now'; }
-      alert('Could not initiate payment. Please check your number and try again.');
-    }
-  })
-  .catch(() => {
-    if (btn) { btn.disabled = false; btn.textContent = 'Subscribe now'; }
-    alert('Network error. Please check your connection and try again.');
-  });
-}
-
-function showPaymentPrompt(txId, phone, email) {
-  document.getElementById('pricing-section').innerHTML = `
-    <div class="section-label">Complete your payment</div>
-    <div class="pricing-card" style="text-align:center">
-      <div style="font-size:32px;margin-bottom:12px">&#128242;</div>
-      <h3 style="font-family:'Lora',Georgia,serif;font-size:17px;font-weight:700;color:var(--deep);margin-bottom:10px">Check your phone</h3>
-      <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px">
-        A payment prompt of <strong style="color:var(--deep)">K24.12</strong> has been sent to
-        <strong style="color:var(--deep)">${phone}</strong>.<br/>
-        Enter your Mobile Money PIN to confirm.
-      </p>
-      <button class="sub-btn" onclick="verifyMoneyUnify('${txId}','${email}',this)">I have paid, verify now</button>
-      <p class="pay-note" style="margin-top:10px">MTN, Airtel and Zamtel supported</p>
-    </div>`;
-}
-
-function verifyMoneyUnify(txId, email, btn) {
-  if (btn) { btn.disabled = true; btn.textContent = 'Verifying...'; }
-
-  fetch('https://api.moneyunify.one/payments/verify', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Accept': 'application/json'
-    },
-    body: new URLSearchParams({
-      transaction_id: txId,
-      auth_id:        '01KS7ZB93G7GPYKTAVXYPWRMF9'
-    })
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (!data.isError && data.data && data.data.status === 'successful') {
-      localStorage.setItem('ga_subscribed', 'true');
-      localStorage.setItem('ga_email', email);
-      window.location.href = 'library.html';
-    } else {
-      if (btn) { btn.disabled = false; btn.textContent = 'I have paid, verify now'; }
-      alert('Payment not confirmed yet. Please enter your PIN on your phone first, then try again.');
-    }
-  })
-  .catch(() => {
-    if (btn) { btn.disabled = false; btn.textContent = 'I have paid, verify now'; }
-    alert('Network error during verification. Please try again.');
-  });
-}
+(function(){
+  var b=document.getElementById('menuBtn'),n=document.getElementById('nav');
+  b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o);});
+  n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){n.classList.remove('open');b.setAttribute('aria-expanded',false);});});
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(list){list.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.12});
+  els.forEach(function(e){io.observe(e)});
+})();
 </script>
 </body>
 </html>
