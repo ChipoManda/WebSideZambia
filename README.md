@@ -1,33 +1,21 @@
-# GiftedAcadem
+# WebSide Zambia
 
-Past papers for Biomedical Science students across Africa and the world.
+## Web Design | Developement | Digital solutions
 
-## Files
+Welcome to the official website repository for WebSide Zambia, a web design and development business helping businesses, organisations, and professionals establish a strong online presence.
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Landing page, registration, dashboard |
-| `library.html` | Paper library, browse by course, university, year |
-| `viewer.html` | Paper viewer with toggle answers, read aloud, print |
+🌐 Website: https://websidezambia.com
 
-## Setup for GitHub Pages
+## About WebSide Zambia
 
-1. Rename `giftedacadem-landing.html` to `index.html`
-2. Push all three HTML files to your repository root
-3. Go to Settings, Pages, set source to main branch, root folder
-4. Your site will be live at `https://yourusername.github.io/repository-name`
+WebSide Zambia designs and develops professional, responsive websites tailored to the needs of clients. Our goal is to help businesses communicate their value, showcase their services, and connect with their audiences on the web.
 
-## Notes
+## Services
 
-- All data is currently hardcoded in the JS — replace with API calls when backend is ready
-- Payment flow (K24.12/month) connects to MTN MoMo and Airtel Money via your Node/Railway backend
-- Source URLs on papers point to publicly available repositories (AIIMS, RGUHS, NTRUHS, Delhi, Meru)
-- Papers from Zambian universities to be populated via student networks and direct university contact
+Business Websites — Professional websites for businesses and organisations.
 
-## Stack
+Personal Portfolio Websites — Digital portfolios and professional profiles.
 
-Frontend: HTML, CSS, Vanilla JS  
-Backend (to connect): Node.js, Express, Railway  
-Database: PostgreSQL  
-Payments: MTN Mobile Money, Airtel Money, Flutterwave  
-AI tutor: Anthropic Claude Haiku
+Website Design & Development — Modern, responsive, user-friendly web experiences.
+
+Custom Web Solutions — Website features and functionality tailored to client requirements.
