@@ -331,6 +331,41 @@ header nav a:last-child:hover{background:var(--clay);color:#fff}
 .mark .s{animation:islide .8s cubic-bezier(.2,1.15,.4,1) 4s both}
 .word .w1{animation:iw2 .8s cubic-bezier(.2,1,.3,1) 4.65s both}
 .itag{animation:iw1 .7s ease 5.2s both}
+
+/* live landing page screenshots inside the preview window */
+.pv .shotimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top left;opacity:0;transition:opacity .6s ease;z-index:1;background:#fff}
+.pv .shotimg.ok{opacity:1}
+
+/* brighter, stylish contact block */
+.cta{position:relative;overflow:hidden;padding:60px 30px 52px;border-radius:24px;border:1px solid rgba(255,255,255,.3);
+background:radial-gradient(circle at 12% 0%,rgba(255,255,255,.28),transparent 46%),radial-gradient(circle at 92% 100%,rgba(210,181,165,.38),transparent 52%),linear-gradient(135deg,#6a918c 0%,#4f7471 50%,#3d5957 100%)}
+.cta::before{content:"";position:absolute;right:-90px;top:-90px;width:300px;height:300px;border-radius:50%;border:2px solid rgba(255,255,255,.14)}
+.cta::after{content:"";position:absolute;left:-110px;bottom:-130px;width:320px;height:320px;border-radius:50%;border:2px solid rgba(255,255,255,.1)}
+.cta>*{position:relative;z-index:1}
+.cdots{position:absolute!important;top:20px;left:24px;display:flex;gap:7px}
+.cdots i{width:11px;height:11px;border-radius:50%;background:#E3CABB;display:block;box-shadow:0 0 8px rgba(227,202,187,.7)}
+.ceyebrow{display:inline-block;font:700 .78rem var(--head);letter-spacing:.18em;text-transform:uppercase;color:#F1D9CB;margin-bottom:14px}
+.cta h2{color:#fff;font-size:clamp(1.8rem,4.6vw,2.7rem);line-height:1.15;letter-spacing:-.02em;margin:0 auto 14px;max-width:720px}
+.cta h2 em{font-style:normal;color:#F6DCCB}
+.cta>p{max-width:520px;margin:0 auto 28px;color:rgba(255,255,255,.92);font-size:1.05rem}
+.cbtns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+.cbtns a{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:12px;font:700 1rem var(--head);text-decoration:none;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.cbtns svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.cb1{background:#FBF1EA;color:#2d4745;box-shadow:0 8px 22px -8px rgba(0,0,0,.35)}
+.cb1:hover{background:#fff;transform:translateY(-3px);box-shadow:0 14px 28px -8px rgba(0,0,0,.4)}
+.cb2{background:rgba(255,255,255,.14);color:#fff;border:1.5px solid rgba(255,255,255,.65)}
+.cb2:hover{background:rgba(255,255,255,.26);transform:translateY(-3px)}
+.cinfo{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.cpill{display:inline-flex;align-items:center;gap:10px;padding:8px 18px 8px 8px;border-radius:99px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.3);color:#fff;text-decoration:none;font-weight:600;font-size:.95rem;transition:background .2s}
+.cpill:hover{background:rgba(255,255,255,.24)}
+.cic{width:34px;height:34px;border-radius:50%;background:#EBD3C5;color:#4a6563;display:grid;place-items:center}
+.cic svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:560px){.cta{padding:56px 20px 40px}.cbtns a{width:100%;justify-content:center}.cpill{width:100%;justify-content:flex-start}}
+
+/* reveal: dots and frame share one fixed position */
+@keyframes iwipe{from{clip-path:inset(0 100% 0 0);opacity:.2}to{clip-path:inset(0 0 0 0);opacity:1}}
+.istage{position:absolute;left:0;top:0;width:100%;height:100vh;height:100svh;display:flex;align-items:center;justify-content:center}
+.mark .d1,.mark .d2,.mark .d3,.mark .frame,.mark .s{will-change:transform,opacity}
 </style>
 </head>
 <body>
@@ -365,11 +400,11 @@ i.addEventListener('click',end);setTimeout(end,6300);})();</script>
 <h2>Sample work</h2><p class="sub">Live websites that show the range, from a consulting company to a personal academic profile.</p>
 <div class="work" id="car">
 <article class="shot on"><div class="bar"><i></i><i></i><i></i><span>view-mac.com</span></div>
-<div class="pv"><div class="pnav"><b></b><i></i><i></i><i></i><u></u></div><div class="phero"><h4>ViewMAC Consulting</h4><small>Research, data and consulting services</small><span class="ppill">Our services</span></div><div class="pcards"><div><i></i><i></i></div><div><i></i><i></i></div><div><i></i><i></i></div></div><a class="ov" href="https://view-mac.com" target="_blank" rel="noopener" aria-label="Open https://view-mac.com"></a></div>
+<div class="pv"><div class="pnav"><b></b><i></i><i></i><i></i><u></u></div><div class="phero"><h4>ViewMAC Consulting</h4><small>Research, data and consulting services</small><span class="ppill">Our services</span></div><div class="pcards"><div><i></i><i></i></div><div><i></i><i></i></div><div><i></i><i></i></div></div><img class="shotimg" alt="Live preview of view-mac.com" data-src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fview-mac.com?w=1280&h=960"><a class="ov" href="https://view-mac.com" target="_blank" rel="noopener" aria-label="Open https://view-mac.com"></a></div>
 <div class="meta"><h3>view-mac.com</h3><p>A consulting website covering research, data analysis, grant writing, training, web development and branding, with team, opportunities and contact sections.</p><a href="https://view-mac.com" target="_blank" rel="noopener">Visit website &rarr;</a></div></article>
 
 <article class="shot"><div class="bar"><i></i><i></i><i></i><span>chipo-manda.cv</span></div>
-<div class="pv"><div class="pnav"><b></b><i></i><i></i><i></i><u></u></div><div class="phero"><h4>Chipo Manda</h4><small>Bioinformatics and public health</small><span class="ppill">View CV</span></div><div class="pcards"><div><i></i><i></i></div><div><i></i><i></i></div><div><i></i><i></i></div></div><a class="ov" href="https://chipo-manda.cv" target="_blank" rel="noopener" aria-label="Open https://chipo-manda.cv"></a></div>
+<div class="pv"><div class="pnav"><b></b><i></i><i></i><i></i><u></u></div><div class="phero"><h4>Chipo Manda</h4><small>Bioinformatics and public health</small><span class="ppill">View CV</span></div><div class="pcards"><div><i></i><i></i></div><div><i></i><i></i></div><div><i></i><i></i></div></div><img class="shotimg" alt="Live preview of chipo-manda.cv" data-src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fchipo-manda.cv?w=1280&h=960"><a class="ov" href="https://chipo-manda.cv" target="_blank" rel="noopener" aria-label="Open https://chipo-manda.cv"></a></div>
 <div class="meta"><h3>chipo-manda.cv</h3><p>A professional CV website presenting education, experience, publications, projects and references for a bioinformatics and public health career.</p><a href="https://chipo-manda.cv" target="_blank" rel="noopener">Visit website &rarr;</a></div></article>
 </div></div></section>
 
@@ -379,11 +414,11 @@ i.addEventListener('click',end);setTimeout(end,6300);})();</script>
 
 <section id="packages"><div class="wrap"><h2>Packages</h2><p class="sub">Clear starting prices so you know where you stand. Your final quote depends on the scope we agree together.</p><div class="pk"><article class="card pkg pc"><span class="dots"><i></i><i></i><i></i></span><span class="ptag">Special rate</span><h3>Student Associations</h3><div class="price">Under K1,000</div><p class="for">A simple, professional home online for clubs and societies.</p><button type="button" class="info">See what's included</button><template><p class="ffull">For student associations, clubs and societies that need a simple, professional home online.</p><h4>What's included</h4><ul><li>Single page website for your association</li><li>Mobile responsive layout</li><li>About, events and leadership sections</li><li>Contact information and WhatsApp link</li><li>Simple handover</li></ul><p class="fine">Domain and hosting quoted separately.</p></template></article><article class="card pkg pc"><span class="dots"><i></i><i></i><i></i></span><span class="ptag">Package 01</span><h3>Starter</h3><div class="price"><small>From</small> K2,500</div><p class="for">For individuals and small businesses getting online.</p><button type="button" class="info">See what's included</button><template><p class="ffull">For individuals, consultants and small businesses establishing an online presence.</p><h4>What's included</h4><ul><li>Single page or compact website</li><li>Mobile responsive layout</li><li>Contact information and WhatsApp link</li><li>Basic search engine optimisation</li></ul><p class="fine">Domain, hosting and ongoing maintenance quoted separately.</p></template></article><article class="card pkg pc"><span class="dots"><i></i><i></i><i></i></span><span class="ptag">Package 02</span><h3>Business</h3><div class="price"><small>From</small> K5,000</div><p class="for">For growing companies that need a fuller presence.</p><button type="button" class="info">See what's included</button><template><p class="ffull">For growing companies that need a more complete digital presence.</p><h4>What's included</h4><ul><li>Up to five agreed pages</li><li>Services, About, Portfolio and Contact sections</li><li>Contact form and WhatsApp integration</li><li>Basic on-page SEO</li><li>Launch testing and handover</li></ul><p class="fine">Domain, hosting and advanced functionality priced according to scope.</p></template></article><article class="card pkg pc"><span class="dots"><i></i><i></i><i></i></span><span class="ptag">Package 03</span><h3>Professional / Custom</h3><div class="price"><small>From</small> K8,000</div><p class="for">For organisations and NGOs with specialised needs.</p><button type="button" class="info">See what's included</button><template><p class="ffull">For established organisations, NGOs and businesses with more specialised requirements.</p><h4>What's included</h4><ul><li>Custom page structure and design</li><li>Extended content and portfolio sections</li><li>Advanced forms or integrations where agreed</li><li>Performance and SEO foundations</li><li>Defined post launch support</li></ul><p class="fine">E-commerce, booking systems and custom applications should be quoted separately.</p></template></article></div></div></section>
 <dialog id="pdlg" class="dlg" aria-labelledby="ptitle"><div class="dbox"><button type="button" class="x" aria-label="Close">&times;</button><div class="ptagm" id="ptagm"></div><h3 id="ptitle"></h3><div class="dnum" id="pprice"></div><div id="pbody"></div><div class="pact"><a class="btn p" href="#contact" id="pquote">Get a quote</a><button type="button" class="btn s pclose">Close</button></div></div></dialog>
-<section id="contact"><div class="wrap"><div class="cta">
-<h2>Ready for a website that looks like you?</h2>
+<section id="contact"><div class="wrap"><div class="cta"><span class="cdots"><i></i><i></i><i></i></span><span class="ceyebrow">Let's work together</span>
+<h2>Ready for a website that <em>looks like you?</em></h2>
 <p>Tell us about your project and we will come back with a clear plan and a fair quote.</p>
-<div class="btns" style="justify-content:center"><a class="btn" href="mailto:info@websidezambia.com">Email us</a><a class="btn o" href="https://wa.me/260972273945" target="_blank" rel="noopener">WhatsApp us</a></div>
-<p class="cl">Email: <a href="mailto:info@websidezambia.com">info@websidezambia.com</a><br>Phone: <a href="tel:+260972273945">+260 97 227 3945</a></p></div></div></section>
+<div class="cbtns"><a class="cb1" href="mailto:info@websidezambia.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>Email us</a><a class="cb2" href="https://wa.me/260972273945" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 01-11.8 7L4 20l1.6-4A8 8 0 1120 11.5z"/><path d="M9 8.8c.3 2.4 2.6 4.6 5.2 5.4l1.2-1.4-2-1-.8.8c-.8-.4-1.5-1.1-1.9-1.9l.8-.8-1-2z"/></svg>WhatsApp us</a></div>
+<div class="cinfo"><a class="cpill" href="mailto:info@websidezambia.com"><span class="cic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg></span>info@websidezambia.com</a><a class="cpill" href="tel:+260972273945"><span class="cic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.3a11 11 0 005.2 5.2l1.3-2 4 1.5v3a2 2 0 01-2.2 2A16 16 0 014.5 5.7 2 2 0 016.5 3.5z"/></svg></span>+260 97 227 3945</a></div></div></div></section>
 </main>
 <footer><div class="wrap">info@websidezambia.com &nbsp;|&nbsp; +260 97 227 3945<br>&copy; 2026 WebSide. All rights reserved.</div></footer>
 <script>
@@ -452,6 +487,24 @@ i.addEventListener('click',end);setTimeout(end,6300);})();</script>
   document.getElementById('pquote').addEventListener('click',close);
   d.addEventListener('click',function(e){if(e.target===d)close();});
   d.addEventListener('close',function(){document.body.classList.remove('lock');});
+})();
+</script>
+<script>
+(function(){
+  document.querySelectorAll('.shotimg').forEach(function(img){
+    var url=img.getAttribute('data-src'),tries=0;
+    function load(){
+      tries++;
+      var t=new Image();
+      t.onload=function(){
+        if(t.naturalWidth>=1000){img.src=t.src;img.classList.add('ok');}
+        else if(tries<12){setTimeout(load,4000);}
+      };
+      t.onerror=function(){if(tries<4){setTimeout(load,5000);}};
+      t.src=url;
+    }
+    load();
+  });
 })();
 </script>
 </body></html>
