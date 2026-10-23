@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<link rel="icon" href="ws_icon.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"WebSide","alternateName":"WebSide Zambia","url":"https://websidezambia.com/"}</script>
 <meta name="color-scheme" content="light">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>WebSide | Web design that works</title>
@@ -366,6 +370,23 @@ background:radial-gradient(circle at 12% 0%,rgba(255,255,255,.28),transparent 46
 @keyframes iwipe{from{clip-path:inset(0 100% 0 0);opacity:.2}to{clip-path:inset(0 0 0 0);opacity:1}}
 .istage{position:absolute;left:0;top:0;width:100%;height:100vh;height:100svh;display:flex;align-items:center;justify-content:center}
 .mark .d1,.mark .d2,.mark .d3,.mark .frame,.mark .s{will-change:transform,opacity}
+
+/* SDG 9 commitment */
+.sdgbox{display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center;background:linear-gradient(135deg,#fff 0%,#f4f8f7 100%);border:1px solid var(--line);border-radius:22px;padding:36px;box-shadow:0 0 0 1px rgba(143,112,97,.2),0 0 30px rgba(143,112,97,.16),0 0 60px rgba(74,101,99,.1)}
+.sdgtile{width:132px;height:132px;border-radius:24px;background:linear-gradient(135deg,var(--teal),var(--deep));color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 14px 30px -12px rgba(35,54,55,.6)}
+.sdgtile small{font:700 .8rem var(--head);letter-spacing:.2em;color:#E8D3C6}
+.sdgtile b{font:800 3.6rem var(--head);line-height:1;color:#fff}
+.sdgtext h2{margin:0 0 10px}
+.sdgtext>p{margin:0;color:var(--muted);max-width:720px}
+.sdgpts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.sdgpts>div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.sdgpts h3{margin:0 0 4px;font-size:1rem;color:var(--teal)}
+.sdgpts p{margin:0;color:var(--muted);font-size:.92rem}
+@media(max-width:860px){.sdgbox{grid-template-columns:1fr;padding:26px 22px;gap:22px}.sdgtile{width:104px;height:104px}.sdgtile b{font-size:2.8rem}.sdgpts{grid-template-columns:1fr}}
+
+:root{--head:"Segoe UI",system-ui,-apple-system,Helvetica,Arial,sans-serif;--body:"Segoe UI",system-ui,-apple-system,Helvetica,Arial,sans-serif}
+
+.pkg .info{align-self:flex-start;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -414,6 +435,16 @@ i.addEventListener('click',end);setTimeout(end,6300);})();</script>
 
 <section id="packages"><div class="wrap"><h2>Packages</h2><p class="sub">Clear starting prices so you know where you stand. Your final quote depends on the scope we agree together.</p><div class="pk"><article class="card pkg pc"><span class="dots"><i></i><i></i><i></i></span><span class="ptag">Special rate</span><h3>Student Associations</h3><div class="price">Under K1,000</div><p class="for">A simple, professional home online for clubs and societies.</p><button type="button" class="info">See what's included</button><template><p class="ffull">For student associations, clubs and societies that need a simple, professional home online.</p><h4>What's included</h4><ul><li>Single page website for your association</li><li>Mobile responsive layout</li><li>About, events and leadership sections</li><li>Contact information and WhatsApp link</li><li>Simple handover</li></ul><p class="fine">Domain and hosting quoted separately.</p></template></article><article class="card pkg pc"><span class="dots"><i></i><i></i><i></i></span><span class="ptag">Package 01</span><h3>Starter</h3><div class="price"><small>From</small> K2,500</div><p class="for">For individuals and small businesses getting online.</p><button type="button" class="info">See what's included</button><template><p class="ffull">For individuals, consultants and small businesses establishing an online presence.</p><h4>What's included</h4><ul><li>Single page or compact website</li><li>Mobile responsive layout</li><li>Contact information and WhatsApp link</li><li>Basic search engine optimisation</li></ul><p class="fine">Domain, hosting and ongoing maintenance quoted separately.</p></template></article><article class="card pkg pc"><span class="dots"><i></i><i></i><i></i></span><span class="ptag">Package 02</span><h3>Business</h3><div class="price"><small>From</small> K5,000</div><p class="for">For growing companies that need a fuller presence.</p><button type="button" class="info">See what's included</button><template><p class="ffull">For growing companies that need a more complete digital presence.</p><h4>What's included</h4><ul><li>Up to five agreed pages</li><li>Services, About, Portfolio and Contact sections</li><li>Contact form and WhatsApp integration</li><li>Basic on-page SEO</li><li>Launch testing and handover</li></ul><p class="fine">Domain, hosting and advanced functionality priced according to scope.</p></template></article><article class="card pkg pc"><span class="dots"><i></i><i></i><i></i></span><span class="ptag">Package 03</span><h3>Professional / Custom</h3><div class="price"><small>From</small> K8,000</div><p class="for">For organisations and NGOs with specialised needs.</p><button type="button" class="info">See what's included</button><template><p class="ffull">For established organisations, NGOs and businesses with more specialised requirements.</p><h4>What's included</h4><ul><li>Custom page structure and design</li><li>Extended content and portfolio sections</li><li>Advanced forms or integrations where agreed</li><li>Performance and SEO foundations</li><li>Defined post launch support</li></ul><p class="fine">E-commerce, booking systems and custom applications should be quoted separately.</p></template></article></div></div></section>
 <dialog id="pdlg" class="dlg" aria-labelledby="ptitle"><div class="dbox"><button type="button" class="x" aria-label="Close">&times;</button><div class="ptagm" id="ptagm"></div><h3 id="ptitle"></h3><div class="dnum" id="pprice"></div><div id="pbody"></div><div class="pact"><a class="btn p" href="#contact" id="pquote">Get a quote</a><button type="button" class="btn s pclose">Close</button></div></div></dialog>
+<section id="sdg"><div class="wrap"><div class="sdgbox">
+<div class="sdgtile" aria-hidden="true"><small>SDG</small><b>9</b></div>
+<div class="sdgtext"><span class="ceyebrow" style="color:var(--clay)">Our commitment</span>
+<h2>Supporting SDG 9: Industry, Innovation and Infrastructure</h2>
+<p>WebSide supports the United Nations Sustainable Development Goal 9 by widening access to information and communication technology. We help small businesses, student groups and organisations in Zambia build a reliable digital presence, so more people can take part in the digital economy.</p>
+<div class="sdgpts">
+<div><h3>Affordable access</h3><p>Clear starting prices, including a special rate for student associations.</p></div>
+<div><h3>Local capability</h3><p>Websites and email set up and supported from Zambia, for Zambian needs.</p></div>
+<div><h3>Lasting infrastructure</h3><p>Fast, mobile first sites that stay easy to maintain and grow.</p></div>
+</div></div></div></div></section>
 <section id="contact"><div class="wrap"><div class="cta"><span class="cdots"><i></i><i></i><i></i></span><span class="ceyebrow">Let's work together</span>
 <h2>Ready for a website that <em>looks like you?</em></h2>
 <p>Tell us about your project and we will come back with a clear plan and a fair quote.</p>
