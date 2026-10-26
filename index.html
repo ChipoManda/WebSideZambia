@@ -387,6 +387,30 @@ background:radial-gradient(circle at 12% 0%,rgba(255,255,255,.28),transparent 46
 :root{--head:"Segoe UI",system-ui,-apple-system,Helvetica,Arial,sans-serif;--body:"Segoe UI",system-ui,-apple-system,Helvetica,Arial,sans-serif}
 
 .pkg .info{align-self:flex-start;white-space:nowrap}
+
+/* start a project form */
+.startbox{display:grid;grid-template-columns:1fr 1.35fr;gap:40px;align-items:start}
+.startside h2{margin:0 0 10px}
+.startside>p{color:var(--muted);margin:0 0 16px;max-width:420px}
+.startlist{list-style:none;padding:0;margin:0 0 16px}
+.startlist li{position:relative;padding-left:30px;margin-bottom:12px}
+.startlist li::before{content:"";position:absolute;left:0;top:4px;width:18px;height:18px;border-radius:50%;background:var(--clay);box-shadow:0 0 10px rgba(143,112,97,.5)}
+.startnote{font-size:.88rem;color:var(--muted)}
+.leadform{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:0 0 0 1px rgba(143,112,97,.2),0 0 30px rgba(143,112,97,.16),0 0 60px rgba(74,101,99,.1)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
+.leadform label{display:block;font:700 .88rem var(--head);color:var(--teal)}
+.leadform .full{grid-column:1/-1}
+.leadform input:not([type=checkbox]),.leadform select,.leadform textarea{display:block;width:100%;margin-top:6px;padding:12px 14px;border:1px solid #CDD6D5;border-radius:10px;font:400 1rem var(--body);color:var(--text);background:#fff}
+.leadform textarea{resize:vertical;min-height:110px}
+.leadform input:focus,.leadform select:focus,.leadform textarea:focus{outline:2px solid var(--clay);border-color:transparent}
+.leadform .consent{display:flex;gap:10px;align-items:flex-start;margin:16px 0;font:400 .92rem var(--body);color:var(--text)}
+.leadform .consent input{margin-top:4px;accent-color:var(--teal)}
+.leadform .btn{width:100%;font-size:1.05rem;cursor:pointer}
+.leadform .btn[disabled]{opacity:.7;cursor:wait}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.lfmsg{margin:12px 0 0;font-weight:600;min-height:1.2em}
+.lfmsg.ok{color:var(--teal)}.lfmsg.err{color:#9a3b2e}
+@media(max-width:860px){.startbox{grid-template-columns:1fr;gap:24px}.fgrid{grid-template-columns:1fr}.leadform{padding:22px 18px}}
 </style>
 </head>
 <body>
@@ -405,7 +429,7 @@ i.addEventListener('click',end);setTimeout(end,6300);})();</script>
 <div class="eyebrow">Web design studio</div>
 <h1>Websites with a solid <em>front side</em> and a strong back end.</h1>
 <p class="lead">WebSide designs and builds clear, fast and professional websites for businesses, organisations and professionals who want to be taken seriously online.</p>
-<div class="btns"><a class="btn p" href="#work">See sample work</a><a class="btn s" href="#contact">Start a project</a></div>
+<div class="btns"><a class="btn p" href="#work">See sample work</a><a class="btn s" href="#start">Start a project</a></div>
 </div>
 
 <section id="services"><div class="wrap">
@@ -434,7 +458,28 @@ i.addEventListener('click',end);setTimeout(end,6300);})();</script>
 <div class="grid steps"><div class="card sc" data-n="01"><h3>Discover</h3><span class="d">We learn about you, your audience and your goals.</span><button type="button" class="info">Click for more info</button><template><li>Who your audience is: customers, age group, location and interests</li><li>Your goals for the website: sales, enquiries, bookings or credibility</li><li>Your business name, what you offer and what makes you different</li><li>Competitors and websites you admire</li><li>Your budget range and target launch date</li><li>Who approves the work on your side</li></template></div><div class="card sc" data-n="02"><h3>Design</h3><span class="d">You see the look and layout, in your brand colours, before we build.</span><button type="button" class="info">Click for more info</button><template><li>Your logo files (SVG or PNG), brand colours and fonts, if you have them</li><li>The look and feel you want, with example websites you like</li><li>The pages and menu you expect (Home, About, Services, Contact)</li><li>Your written content, or a short brief so we can write it with you</li><li>Photos, product images or videos you want used</li><li>Features you need, such as a contact form, WhatsApp button or payments</li></template></div><div class="card sc" data-n="03"><h3>Build</h3><span class="d">We develop, test on real devices and connect your domain.</span><button type="button" class="info">Click for more info</button><template><li>Your domain name and access to the registrar account, or permission for us to register one</li><li>Your hosting choice, or access to your current hosting</li><li>Final approved text and images</li><li>Your contact details and social media links</li><li>Accounts for any tools to connect, such as payments, analytics or email</li><li>Feedback within the agreed time, so the project stays on schedule</li></template></div><div class="card sc" data-n="04"><h3>Launch</h3><span class="d">Your site goes live and we stay available for updates.</span><button type="button" class="info">Click for more info</button><template><li>Your written final approval</li><li>Confirmation of payment terms and any balance due</li><li>Who will manage updates after launch</li><li>A main contact person for support</li><li>Any training you want for your team</li></template></div><div class="card sc" data-n="05 (optional)"><span class="badge">Optional</span><h3>Maintenance</h3><span class="d">Regular updates, backups and support after launch, so your site stays fresh and secure.</span><button type="button" class="info">Click for more info</button><template><li>Which plan you prefer: monthly, quarterly or yearly</li><li>Admin access to your website, hosting and domain accounts</li><li>A main contact for urgent issues</li><li>The kinds of updates you expect, such as text changes, new photos or new pages</li><li>Renewal dates for your domain and hosting</li><li>Changes in your business we should reflect on the site, such as new services or contact details</li></template></div></div><dialog id="dlg" class="dlg" aria-labelledby="dtitle"><div class="dbox"><button type="button" class="x" aria-label="Close">&times;</button><div class="dnum" id="dnum"></div><h3 id="dtitle"></h3><p class="dd" id="ddesc"></p><h4>What we need from you</h4><ul class="req" id="dlist"></ul><button type="button" class="btn p dclose">Got it</button></div></dialog></div></section>
 
 <section id="packages"><div class="wrap"><h2>Packages</h2><p class="sub">Clear starting prices so you know where you stand. Your final quote depends on the scope we agree together.</p><div class="pk"><article class="card pkg pc"><span class="dots"><i></i><i></i><i></i></span><span class="ptag">Special rate</span><h3>Student Associations</h3><div class="price">Under K1,000</div><p class="for">A simple, professional home online for clubs and societies.</p><button type="button" class="info">See what's included</button><template><p class="ffull">For student associations, clubs and societies that need a simple, professional home online.</p><h4>What's included</h4><ul><li>Single page website for your association</li><li>Mobile responsive layout</li><li>About, events and leadership sections</li><li>Contact information and WhatsApp link</li><li>Simple handover</li></ul><p class="fine">Domain and hosting quoted separately.</p></template></article><article class="card pkg pc"><span class="dots"><i></i><i></i><i></i></span><span class="ptag">Package 01</span><h3>Starter</h3><div class="price"><small>From</small> K2,500</div><p class="for">For individuals and small businesses getting online.</p><button type="button" class="info">See what's included</button><template><p class="ffull">For individuals, consultants and small businesses establishing an online presence.</p><h4>What's included</h4><ul><li>Single page or compact website</li><li>Mobile responsive layout</li><li>Contact information and WhatsApp link</li><li>Basic search engine optimisation</li></ul><p class="fine">Domain, hosting and ongoing maintenance quoted separately.</p></template></article><article class="card pkg pc"><span class="dots"><i></i><i></i><i></i></span><span class="ptag">Package 02</span><h3>Business</h3><div class="price"><small>From</small> K5,000</div><p class="for">For growing companies that need a fuller presence.</p><button type="button" class="info">See what's included</button><template><p class="ffull">For growing companies that need a more complete digital presence.</p><h4>What's included</h4><ul><li>Up to five agreed pages</li><li>Services, About, Portfolio and Contact sections</li><li>Contact form and WhatsApp integration</li><li>Basic on-page SEO</li><li>Launch testing and handover</li></ul><p class="fine">Domain, hosting and advanced functionality priced according to scope.</p></template></article><article class="card pkg pc"><span class="dots"><i></i><i></i><i></i></span><span class="ptag">Package 03</span><h3>Professional / Custom</h3><div class="price"><small>From</small> K8,000</div><p class="for">For organisations and NGOs with specialised needs.</p><button type="button" class="info">See what's included</button><template><p class="ffull">For established organisations, NGOs and businesses with more specialised requirements.</p><h4>What's included</h4><ul><li>Custom page structure and design</li><li>Extended content and portfolio sections</li><li>Advanced forms or integrations where agreed</li><li>Performance and SEO foundations</li><li>Defined post launch support</li></ul><p class="fine">E-commerce, booking systems and custom applications should be quoted separately.</p></template></article></div></div></section>
-<dialog id="pdlg" class="dlg" aria-labelledby="ptitle"><div class="dbox"><button type="button" class="x" aria-label="Close">&times;</button><div class="ptagm" id="ptagm"></div><h3 id="ptitle"></h3><div class="dnum" id="pprice"></div><div id="pbody"></div><div class="pact"><a class="btn p" href="#contact" id="pquote">Get a quote</a><button type="button" class="btn s pclose">Close</button></div></div></dialog>
+<dialog id="pdlg" class="dlg" aria-labelledby="ptitle"><div class="dbox"><button type="button" class="x" aria-label="Close">&times;</button><div class="ptagm" id="ptagm"></div><h3 id="ptitle"></h3><div class="dnum" id="pprice"></div><div id="pbody"></div><div class="pact"><a class="btn p" href="#start" id="pquote">Get a quote</a><button type="button" class="btn s pclose">Close</button></div></div></dialog>
+<section id="start"><div class="wrap"><div class="startbox">
+<div class="startside"><span class="ceyebrow" style="color:var(--clay)">Start a project</span>
+<h2>Tell us about your project</h2>
+<p>Share a few details and we will come back with a clear plan and a fair quote.</p>
+<ul class="startlist"><li>Choose a package, or tell us you are not sure yet</li><li>We review your details and get in touch</li><li>You receive a clear plan and a quote</li></ul>
+<p class="startnote">We use your details only to respond to your enquiry.</p></div>
+<form id="leadform" class="leadform" novalidate>
+<div class="fgrid">
+<label>Full name *<input name="name" required autocomplete="name"></label>
+<label>Email *<input name="email" type="email" required autocomplete="email"></label>
+<label>Phone or WhatsApp<input name="phone" type="tel" autocomplete="tel"></label>
+<label>Organisation or business<input name="organisation" autocomplete="organization"></label>
+<label class="full">Package of interest<select name="package"><option value="Not sure yet">Not sure yet</option><option value="Student Associations">Student Associations (under K1,000)</option><option value="Starter">Starter (from K2,500)</option><option value="Business">Business (from K5,000)</option><option value="Professional / Custom">Professional / Custom (from K8,000)</option><option value="Something else">Something else (for example business email)</option></select></label>
+<label class="full">Project details<textarea name="message" rows="4" placeholder="Tell us what you need, your goals and any deadline."></textarea></label>
+</div>
+<div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+<input type="hidden" name="t" value="">
+<label class="consent"><input type="checkbox" name="consent" value="yes" required> I agree that WebSide may contact me about this enquiry.</label>
+<button class="btn p" type="submit">Send my enquiry</button>
+<p class="lfmsg" id="lfmsg" role="status" aria-live="polite"></p>
+</form></div></div></section>
 <section id="sdg"><div class="wrap"><div class="sdgbox">
 <div class="sdgtile" aria-hidden="true"><small>SDG</small><b>9</b></div>
 <div class="sdgtext"><span class="ceyebrow" style="color:var(--clay)">Our commitment</span>
@@ -536,6 +581,39 @@ i.addEventListener('click',end);setTimeout(end,6300);})();</script>
     }
     load();
   });
+})();
+</script>
+<script>
+(function(){
+  var f=document.getElementById('leadform');if(!f)return;
+  /* Paste your Google Apps Script web app URL between the quotes below. */
+  var SCRIPT_URL='https://script.google.com/macros/s/AKfycbw_yZaOFs0JHi9hOyNm1BRZRj0n071M0dB1zaLf4zLxm2S_os1zYBbro4lK46Ru1b7R/exec';
+  var msg=document.getElementById('lfmsg'),btn=f.querySelector('button[type=submit]');
+  function stamp(){f.elements['t'].value=Date.now();}
+  function say(t,ok){msg.textContent=t;msg.className='lfmsg '+(ok?'ok':'err');}
+  stamp();
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!f.checkValidity()){f.reportValidity();return;}
+    if(f.elements['website'].value){say('Thank you!',true);return;}
+    var d=new FormData(f);
+    if(SCRIPT_URL.indexOf('http')!==0){
+      var body='Name: '+d.get('name')+'\nEmail: '+d.get('email')+'\nPhone: '+d.get('phone')+'\nOrganisation: '+d.get('organisation')+'\nPackage: '+d.get('package')+'\n\n'+d.get('message');
+      window.location.href='mailto:info@websidezambia.com?subject='+encodeURIComponent('Project enquiry from '+d.get('name'))+'&body='+encodeURIComponent(body);
+      say('Your email app should open with your details ready to send.',true);return;
+    }
+    btn.disabled=true;btn.textContent='Sending...';
+    fetch(SCRIPT_URL,{method:'POST',body:d,mode:'no-cors'}).then(function(){
+      f.reset();stamp();say('Thank you! Your enquiry has been received and we will be in touch soon.',true);
+    }).catch(function(){
+      say('Something went wrong. Please email info@websidezambia.com or use WhatsApp.',false);
+    }).then(function(){btn.disabled=false;btn.textContent='Send my enquiry';});
+  });
+  var q=document.getElementById('pquote');
+  if(q){q.addEventListener('click',function(){
+    var n=document.getElementById('ptitle').textContent,s=f.elements['package'];
+    for(var i=0;i<s.options.length;i++){if(s.options[i].value===n){s.selectedIndex=i;break;}}
+  });}
 })();
 </script>
 </body></html>
