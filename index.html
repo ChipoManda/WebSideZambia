@@ -513,14 +513,14 @@ function end(){i.classList.add('out');setTimeout(function(){i.style.display='non
 i.addEventListener('click',end);setTimeout(end,7200);})();</script>
 
 <header><div class="wrap"><a href="#top"><img src="ws_logo.png" alt="WebSide logo"></a>
-<nav id="nav" aria-label="Main"><a href="#services">Services</a><a href="#work">Sample work</a><a href="#process">Process</a><a href="#packages">Packages</a><a href="#contact">Contact</a></nav><button type="button" class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button></div></header>
+<nav id="nav" aria-label="Main"><a href="#services">Services</a><a href="#process">Process</a><a href="#packages">Packages</a><a href="#contact">Contact</a></nav><button type="button" class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button></div></header>
 
 <main id="top">
 <div class="wrap hero">
 <div class="eyebrow tag5"><span>Your</span><i>&middot;</i><span>Side</span><i>&middot;</i><span>of</span><i>&middot;</i><span>the</span><i>&middot;</i><span>Web</span></div>
 <h1>Websites with a solid <em>front side</em> and a strong back end.</h1>
 <p class="lead">WebSide designs and builds clear, fast and professional websites, event pages, web apps and data pipelines for businesses, organisations and professionals who want to be taken seriously online.</p>
-<div class="btns"><a class="btn p" href="#work">See sample work</a><a class="btn s" href="#start">Start a project</a></div>
+<div class="btns"><a class="btn p" href="#packages">See packages</a><a class="btn s" href="#start">Start a project</a></div>
 </div>
 
 <section id="services"><div class="wrap">
@@ -531,18 +531,6 @@ i.addEventListener('click',end);setTimeout(end,7200);})();</script>
 <div class="card"><span class="dots"><i></i><i></i><i></i></span><h3>Brand alignment</h3><p>Colours, type and layout built from your logo so everything looks like one brand.</p></div>
 <div class="card"><span class="dots"><i></i><i></i><i></i></span><h3>Mobile first</h3><p>Pages that load quickly and read well on any phone, tablet or desktop.</p></div>
 <div class="card"><span class="dots"><i></i><i></i><i></i></span><h3>Business email setup</h3><p>Professional email addresses on your own domain, such as info@yourbusiness.com, set up for you.</p></div><div class="card"><span class="dots"><i></i><i></i><i></i></span><h3>Events, apps and pipelines</h3><p>Event pages with RSVP, handy web apps, and automation that moves your data into the right sheet or dashboard.</p></div></div></div></section>
-
-<section id="work"><div class="wrap">
-<h2>Sample work</h2><p class="sub">Live websites that show the range, from a consulting company to a personal academic profile.</p>
-<div class="work" id="car">
-<article class="shot on"><div class="bar"><i></i><i></i><i></i><span>view-mac.com</span></div>
-<div class="pv"><div class="pnav"><b></b><i></i><i></i><i></i><u></u></div><div class="phero"><h4>ViewMAC Consulting</h4><small>Research, data and consulting services</small><span class="ppill">Our services</span></div><div class="pcards"><div><i></i><i></i></div><div><i></i><i></i></div><div><i></i><i></i></div></div><img class="shotimg" alt="Live preview of view-mac.com" data-src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fview-mac.com?w=1280&h=960"><a class="ov" href="https://view-mac.com" target="_blank" rel="noopener" aria-label="Open https://view-mac.com"></a></div>
-<div class="meta"><h3>view-mac.com</h3><p>A consulting website covering research, data analysis, grant writing, training, web development and branding, with team, opportunities and contact sections.</p><a href="https://view-mac.com" target="_blank" rel="noopener">Visit website &rarr;</a></div></article>
-
-<article class="shot"><div class="bar"><i></i><i></i><i></i><span>chipo-manda.cv</span></div>
-<div class="pv"><div class="pnav"><b></b><i></i><i></i><i></i><u></u></div><div class="phero"><h4>Chipo Manda</h4><small>Bioinformatics and public health</small><span class="ppill">View CV</span></div><div class="pcards"><div><i></i><i></i></div><div><i></i><i></i></div><div><i></i><i></i></div></div><img class="shotimg" alt="Live preview of chipo-manda.cv" data-src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fchipo-manda.cv?w=1280&h=960"><a class="ov" href="https://chipo-manda.cv" target="_blank" rel="noopener" aria-label="Open https://chipo-manda.cv"></a></div>
-<div class="meta"><h3>chipo-manda.cv</h3><p>A professional CV website presenting education, experience, publications, projects and references for a bioinformatics and public health career.</p><a href="https://chipo-manda.cv" target="_blank" rel="noopener">Visit website &rarr;</a></div></article>
-</div></div></section>
 
 <section id="process"><div class="wrap">
 <h2>How it works</h2><p class="sub">A simple process, so you always know what happens next.</p>
@@ -587,21 +575,6 @@ i.addEventListener('click',end);setTimeout(end,7200);})();</script>
 <footer><div class="wrap"><div class="ftag"><span>Your</span><i>&middot;</i><span>Side</span><i>&middot;</i><span>of</span><i>&middot;</i><span>the</span><i>&middot;</i><span>Web</span></div>&copy; 2026 WebSide. All rights reserved.</div></footer>
 <script>
 (function(){
-  var car=document.getElementById('car');if(!car)return;
-  var items=car.querySelectorAll('.shot'),i=0,t,paused=false;
-  var dots=document.createElement('div');dots.className='dots';
-  items.forEach(function(_,n){var b=document.createElement('button');b.setAttribute('aria-label','Show sample '+(n+1));b.onclick=function(){show(n);};dots.appendChild(b);});
-  car.parentNode.insertBefore(dots,car.nextSibling);
-  var btns=dots.querySelectorAll('button');
-  function show(n){i=n;items.forEach(function(e,k){e.classList.toggle('on',k===n);btns[k].classList.toggle('on',k===n);});}
-  function start(){clearInterval(t);t=setInterval(function(){if(!paused)show((i+1)%items.length);},3000);}
-  car.addEventListener('mouseenter',function(){paused=true});car.addEventListener('mouseleave',function(){paused=false});
-  dots.addEventListener('click',start);
-  show(0);start();
-})();
-</script>
-<script>
-(function(){
   var dlg=document.getElementById('dlg');if(!dlg)return;
   function fill(c){document.getElementById('dnum').textContent=c.dataset.n;
     document.getElementById('dtitle').textContent=c.querySelector('h3').textContent;
@@ -614,16 +587,6 @@ i.addEventListener('click',end);setTimeout(end,7200);})();</script>
   dlg.querySelector('.dclose').addEventListener('click',close);
   dlg.addEventListener('click',function(e){if(e.target===dlg)close();});
   dlg.addEventListener('close',function(){document.body.classList.remove('lock');});
-})();
-</script>
-<script>
-(function(){
-  document.querySelectorAll('.live').forEach(function(box){
-    var f=box.querySelector('iframe');
-    function fit(){var w=box.clientWidth,h=box.clientHeight;if(!w)return;var k=w/1280;f.style.transform='scale('+k+')';f.style.height=(h/k)+'px';}
-    if(window.ResizeObserver){new ResizeObserver(fit).observe(box);}else{window.addEventListener('resize',fit);}
-    fit();
-  });
 })();
 </script>
 <script>
@@ -651,24 +614,6 @@ i.addEventListener('click',end);setTimeout(end,7200);})();</script>
   document.getElementById('pquote').addEventListener('click',close);
   d.addEventListener('click',function(e){if(e.target===d)close();});
   d.addEventListener('close',function(){document.body.classList.remove('lock');});
-})();
-</script>
-<script>
-(function(){
-  document.querySelectorAll('.shotimg').forEach(function(img){
-    var url=img.getAttribute('data-src'),tries=0;
-    function load(){
-      tries++;
-      var t=new Image();
-      t.onload=function(){
-        if(t.naturalWidth>=1000){img.src=t.src;img.classList.add('ok');}
-        else if(tries<12){setTimeout(load,4000);}
-      };
-      t.onerror=function(){if(tries<4){setTimeout(load,5000);}};
-      t.src=url;
-    }
-    load();
-  });
 })();
 </script>
 <script>
