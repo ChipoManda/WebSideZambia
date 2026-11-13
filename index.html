@@ -502,6 +502,41 @@ footer .ftag span:nth-of-type(2){color:var(--clay)}
 .addc li{position:relative;padding-left:22px;margin-bottom:9px;font-size:.95rem;color:var(--text)}
 .addc li::before{content:"\2713";position:absolute;left:0;color:var(--clay);font-weight:800}
 @media(max-width:860px){.addgrid{grid-template-columns:1fr}}
+
+/* floating Packages & invoicing button + starting prices popup */
+.pfab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:90;display:inline-flex;align-items:center;gap:8px;font:700 .92rem var(--head);color:var(--on-teal);background:var(--teal);border:2px solid var(--teal);border-radius:99px;padding:12px 20px;cursor:pointer;box-shadow:0 0 18px rgba(74,101,99,.45),0 8px 22px rgba(35,54,55,.25);transition:background .2s,border-color .2s}
+.pfab:hover{background:var(--clay);border-color:var(--clay)}
+.pfab:focus-visible{outline:2px solid var(--clay);outline-offset:3px}
+.pfab svg{width:18px;height:18px;flex:none}
+#prdlg .dbox h3{margin:.1em 0 .2em}
+.prsub{color:var(--muted);margin:0 0 18px}
+.prc{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;background:var(--clay-soft);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.prc:first-child{border-color:var(--clay)}
+.prl b{display:block;font:700 1.05rem var(--head);color:var(--teal)}
+.prl small{display:block;color:var(--muted);font-size:.84rem;margin-top:2px}
+.prtag{display:inline-block;font:700 .68rem var(--head);letter-spacing:.08em;text-transform:uppercase;color:var(--clay);margin-bottom:2px}
+.prr{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.prp{font:800 1.3rem var(--head);color:var(--deep);white-space:nowrap}
+.btn.prreq{padding:9px 16px;font-size:.88rem;cursor:pointer;font-family:var(--head)}
+.prx{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;border-radius:10px;cursor:pointer;font-size:.95rem;line-height:1.35}
+.prx:hover,.prx:has(input:checked){background:var(--clay-soft)}
+.prx input{accent-color:var(--teal);width:18px;height:18px;margin:1px 0 0;flex:none}
+#prdlg h4{margin:16px 0 4px}
+.prpick{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--clay-soft);border:1px solid var(--clay);border-radius:14px;padding:12px 16px;margin-bottom:6px}
+.prpick b{font:700 1.05rem var(--head);color:var(--teal)}
+.prpick span{font:800 1.1rem var(--head);color:var(--deep)}
+.prbar{position:sticky;bottom:0;background:var(--surface);border-top:1px solid var(--line);margin-top:14px;padding:12px 0 2px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.prbar .cnt{color:var(--muted);font-size:.9rem}
+.prbar .acts{display:flex;gap:8px;flex-wrap:wrap}
+.btn.prback{padding:9px 16px;font-size:.88rem;cursor:pointer;font-family:var(--head);background:transparent}
+.prsum{display:flex;align-items:baseline;gap:6px 12px;flex-wrap:wrap}
+.tot{display:inline-block;font:800 1.1rem var(--head);color:var(--deep)}
+.prpx{margin-left:auto;padding-left:8px;font:700 .8rem var(--head);font-style:normal;color:var(--clay);white-space:nowrap}
+.prchip{position:fixed;left:0;top:0;z-index:5;pointer-events:none;will-change:transform,opacity;background:var(--clay);color:#fff;font:800 .85rem var(--head);padding:4px 10px;border-radius:99px;box-shadow:0 4px 14px rgba(35,54,55,.3)}
+.prchip.neg{background:var(--deep)}
+@media(max-width:480px){.pfab{padding:11px 16px;font-size:.86rem}}
+@media(prefers-reduced-motion:reduce){.pfab{transition:none}}
+@media print{.pfab{display:none}}
 </style>
 </head>
 <body>
@@ -655,6 +690,97 @@ i.addEventListener('click',end);setTimeout(end,7200);})();</script>
   if(!('IntersectionObserver' in window)){d.classList.add('in');return;}
   var io=new IntersectionObserver(function(l){l.forEach(function(x){if(x.isIntersecting){d.classList.add('in');io.disconnect();}});},{threshold:.6});
   io.observe(d);
+})();
+</script>
+
+<button type="button" class="pfab" id="prfab" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg>Packages &amp; invoicing</button>
+<dialog id="prdlg" class="dlg" aria-labelledby="prtitle"><div class="dbox"><button type="button" class="x" aria-label="Close">&times;</button>
+<div class="ptagm">Packages &amp; invoicing</div>
+<h3 id="prtitle">Starting prices</h3>
+<div id="prstep1">
+<p class="prsub">Choose a package to start your order.</p>
+<div class="prc"><div class="prl"><span class="prtag">Special rate</span><b>Student Associations</b><small>Event page &middot; RSVP form &middot; WhatsApp link</small></div><div class="prr"><span class="prp">K1,000</span><button type="button" class="btn p prreq" data-pkg="Student Associations" data-price="K1,000">Choose</button></div></div>
+<div class="prc"><div class="prl"><b>Starter</b><small>Compact site &middot; Event page &middot; Basic SEO</small></div><div class="prr"><span class="prp">from K2,500</span><button type="button" class="btn p prreq" data-pkg="Starter" data-price="from K2,500">Choose</button></div></div>
+<div class="prc"><div class="prl"><b>Business</b><small>Up to 5 pages &middot; Event microsite &middot; Forms to sheet</small></div><div class="prr"><span class="prp">from K6,000</span><button type="button" class="btn p prreq" data-pkg="Business" data-price="from K6,000">Choose</button></div></div>
+<div class="prc"><div class="prl"><b>Professional / Custom</b><small>Custom apps &middot; Data pipelines &middot; Integrations</small></div><div class="prr"><span class="prp">from K15,000</span><button type="button" class="btn p prreq" data-pkg="Professional / Custom" data-price="from K15,000">Choose</button></div></div>
+</div>
+<div id="prstep2" hidden>
+<p class="prsub">Your package. Now add any extras you would like, or skip straight to your invoice request.</p>
+<div class="prpick"><b id="prpkg"></b><span id="prpri"></span></div>
+<h4>Events</h4><label class="prx"><input type="checkbox" value="Event page with countdown and schedule" data-price="250"><span>Event page with countdown and schedule</span></label><label class="prx"><input type="checkbox" value="RSVP and registration forms saved to a sheet" data-price="500"><span>RSVP and registration forms saved to a sheet</span></label><label class="prx"><input type="checkbox" value="Speaker and sponsor sections" data-price="250"><span>Speaker and sponsor sections</span></label><label class="prx"><input type="checkbox" value="Photo galleries and live stream links" data-price="250"><span>Photo galleries and live stream links</span></label><label class="prx"><input type="checkbox" value="QR code tickets and check in" data-price="950"><span>QR code tickets and check in</span></label>
+<h4>Little things people use</h4><label class="prx"><input type="checkbox" value="WhatsApp chat and click to call buttons" data-price="250"><span>WhatsApp chat and click to call buttons</span></label><label class="prx"><input type="checkbox" value="Booking and appointment requests" data-price="500"><span>Booking and appointment requests</span></label><label class="prx"><input type="checkbox" value="Quote calculators and checklists" data-price="500"><span>Quote calculators and checklists</span></label><label class="prx"><input type="checkbox" value="Polls, quizzes and voting" data-price="500"><span>Polls, quizzes and voting</span></label><label class="prx"><input type="checkbox" value="Newsletter sign up and downloads" data-price="250"><span>Newsletter sign up and downloads</span></label>
+<h4>Systems and pipelines</h4><label class="prx"><input type="checkbox" value="Forms that fill a Google Sheet automatically" data-price="500"><span>Forms that fill a Google Sheet automatically</span></label><label class="prx"><input type="checkbox" value="Email alerts and automatic replies" data-price="500"><span>Email alerts and automatic replies</span></label><label class="prx"><input type="checkbox" value="Dashboards and simple reports" data-price="950"><span>Dashboards and simple reports</span></label><label class="prx"><input type="checkbox" value="Data import and cleaning pipelines" data-price="950"><span>Data import and cleaning pipelines</span></label><label class="prx"><input type="checkbox" value="Links between your tools and spreadsheets" data-price="950"><span>Links between your tools and spreadsheets</span></label>
+<div class="prbar"><div class="prsum"><span class="cnt" id="prcnt">No extras added</span><b class="tot" id="prtot"></b></div><div class="acts"><button type="button" class="btn s prback" id="prback">Change package</button><button type="button" class="btn p prreq2" id="prgo">Request invoice</button></div></div>
+</div>
+</div></dialog>
+<script>
+(function(){
+  var DEFAULT_EXTRA=250; /* fallback price of an extra, in Kwacha. Each tick box carries its own data-price (250, 500 or 950). */
+  var fab=document.getElementById('prfab'),d=document.getElementById('prdlg');if(!fab||!d)return;
+  var s1=document.getElementById('prstep1'),s2=document.getElementById('prstep2'),ttl=document.getElementById('prtitle'),box=d.querySelector('.dbox');
+  var cnt=document.getElementById('prcnt'),tot=document.getElementById('prtot');
+  var pkg='',base=0,from=false,boxes=d.querySelectorAll('.prx input');
+  function fmt(n){return 'K'+n.toLocaleString('en-US');}
+  function price(c){return parseInt(c.getAttribute('data-price'),10)||DEFAULT_EXTRA;}
+  function reduced(){return window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
+  boxes.forEach(function(c){var t=document.createElement('em');t.className='prpx';t.textContent='+'+fmt(price(c));c.parentNode.appendChild(t);});
+  function open(){document.body.classList.add('lock');if(d.showModal){d.showModal();}else{d.setAttribute('open','');}}
+  function close(){if(d.close){d.close();}else{d.removeAttribute('open');}document.body.classList.remove('lock');}
+  function chosen(){var a=[];boxes.forEach(function(c){if(c.checked)a.push(c.value);});return a;}
+  function extrasSum(){var n=0;boxes.forEach(function(c){if(c.checked)n+=price(c);});return n;}
+  function totalText(){return (from?'from ':'')+fmt(base+extrasSum());}
+  function update(){var n=chosen().length;cnt.textContent=n?(n+(n===1?' extra added':' extras added')):'No extras added';tot.textContent='Total: '+totalText();}
+  function pulse(){if(tot.animate&&!reduced()){tot.animate([{transform:'scale(1)'},{transform:'scale(1.14)'},{transform:'scale(1)'}],{duration:320,easing:'ease-out'});}}
+  /* a "+K250" chip flies from the ticked box to the total, then the total changes */
+  function fly(src,add){
+    if(reduced()||!src.animate||!tot.offsetParent){update();return;}
+    var a=src.getBoundingClientRect(),b=tot.getBoundingClientRect();
+    var chip=document.createElement('span');chip.className='prchip'+(add?'':' neg');
+    chip.textContent=(add?'+':'\u2212')+fmt(price(src));d.appendChild(chip);
+    var w=chip.offsetWidth,h=chip.offsetHeight;
+    var tx=b.left+b.width/2-w/2,ty=b.top+b.height/2-h/2,sx=a.left,sy=a.top+a.height/2-h/2;
+    var frames=add?[
+      {transform:'translate('+sx+'px,'+sy+'px) scale(.8)',opacity:0},
+      {transform:'translate('+sx+'px,'+(sy-14)+'px) scale(1.1)',opacity:1,offset:.25},
+      {transform:'translate('+tx+'px,'+ty+'px) scale(.9)',opacity:1}
+    ]:[
+      {transform:'translate('+tx+'px,'+ty+'px) scale(1)',opacity:1},
+      {transform:'translate('+tx+'px,'+(ty-28)+'px) scale(.9)',opacity:0}
+    ];
+    var an=chip.animate(frames,{duration:add?650:420,easing:'ease-in-out',fill:'forwards'});
+    an.onfinish=function(){chip.remove();update();pulse();};
+    an.oncancel=function(){chip.remove();update();};
+  }
+  function step(two){s1.hidden=two;s2.hidden=!two;ttl.textContent=two?'Add extras':'Starting prices';box.scrollTop=0;}
+  function reset(){pkg='';base=0;from=false;boxes.forEach(function(c){c.checked=false;});update();step(false);}
+  fab.addEventListener('click',open);
+  d.querySelector('.x').addEventListener('click',close);
+  d.addEventListener('click',function(e){if(e.target===d)close();});
+  d.addEventListener('close',function(){document.body.classList.remove('lock');});
+  d.querySelectorAll('.prreq').forEach(function(b){b.addEventListener('click',function(){
+    var pr=b.getAttribute('data-price');
+    pkg=b.getAttribute('data-pkg');base=parseInt(pr.replace(/[^0-9]/g,''),10)||0;from=/^from/i.test(pr);
+    document.getElementById('prpkg').textContent=pkg;
+    document.getElementById('prpri').textContent=pr;
+    update();step(true);
+  });});
+  boxes.forEach(function(c){c.addEventListener('change',function(){fly(c,c.checked);});});
+  document.getElementById('prback').addEventListener('click',function(){step(false);});
+  document.getElementById('prgo').addEventListener('click',function(){
+    var ex=chosen(),f=document.getElementById('leadform');
+    var txt='Invoice request: '+pkg+' package.'+(ex.length?' Extras: '+ex.join(', ')+'.':'')+' Estimated total: '+totalText()+'. Please send me an invoice.';
+    close();
+    if(f){
+      var sel=f.elements['package'];
+      if(sel){for(var i=0;i<sel.options.length;i++){if(sel.options[i].value===pkg){sel.selectedIndex=i;break;}}}
+      var m=f.elements['message'];
+      if(m){if(!m.value.trim()||/^Invoice request:/.test(m.value)){m.value=txt;}else{m.value=txt+'\n\n'+m.value;}}
+    }
+    var t=document.getElementById('start');
+    if(t){t.scrollIntoView({behavior:'smooth',block:'start'});}
+    if(f&&f.elements['name']){setTimeout(function(){try{f.elements['name'].focus({preventScroll:true});}catch(e){}},700);}
+    reset();
+  });
 })();
 </script>
 </body></html>
